@@ -1,0 +1,20 @@
+{
+  "name": "voodie",
+  "version": "1.0.0",
+  "description": "Meal planning app for vegan foodies\r Project for Coyotoiv School of Software Engineering",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/balibee/voodie.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/balibee/voodie/issues"
+  },
+  "homepage": "https://github.com/balibee/voodie#readme"
+}
