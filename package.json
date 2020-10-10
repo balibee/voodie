@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/balibee/voodie/issues"
   },
-  "homepage": "https://github.com/balibee/voodie#readme"
+  "homepage": "https://github.com/balibee/voodie#readme",
+  "dependencies": {
+    "emoji": "^0.3.2",
+    "node-emoji": "^1.10.0"
+  }
 }

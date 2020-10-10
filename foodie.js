@@ -6,44 +6,60 @@ class Foodie {
         this.favoritedRecipes = []
         this.followers = []
         this.following = []
+        this.bio = ''
     }
 
-    ratedRecipe(recipe, rating, review) {
+    rateRecipe(recipe, rating, review) {
         if (rating > 0 && rating <= 5) {
             recipe.reviews.push([this.name, rating, review])
-            recipe.calculateRating(rating)
+            for (let i = 1; i <= 5; i++) {
+                if (rating === i) {
+                    recipe.starRatings[i-1]++
+                }
+            }
+            recipe.totalRatings++
         } else {
-            console.log(`Please choose a number between 1 and 5.`)
-            return
+            return `Please choose a number between 1 and 5.`
         }
         console.log(`${this.name} rates ${recipe.name} ${rating} stars!`)
     }
 
-    favorited(recipe) {
+    favorite(recipe) {
         recipe.favorites++
         this.favoritedRecipes.push(recipe)
     }
 
-    unfavorited(recipe) {
+    unfavorite(recipe) {
         if (recipe.favorites > 0) {
             recipe.favorites--
         }
         this.favoritedRecipes.splice(this.favoritedRecipes.indexOf(recipe), 1)
     }
 
-    createdRecipe(recipe) {
+    createRecipe(recipe) {
         this.recipes.push(recipe)
     }
 
-    followed(person) {
-        this.following.push(person.name)
-        person.followers.push(this.name);
+    follow(person) {
+        this.following.push(person)
+        person.followers.push(this);
         console.log(`${this.name} is now following ${person.name}!`)
     }
 
-    unfollowed(person) {
+    unfollow(person) {
         this.following.slice(this.following.indexOf(person), 1)
-        console.log(`${this.name} unfollowed ${person.name}`);
+        console.log(`${this.name} unfollowed ${person.name}`)
+    }
+
+    get profile() {
+        return `
+        Name: ${this.name}
+        Bio: ${this.bio}
+        Recipes: ${this.recipes.map(recipe => recipe.name).join(', ') || `No recipes submitted yet`}
+        Favorited Recipes: ${this.favoritedRecipes.map(recipe => recipe.name).join(', ') || `No favorites yet`}
+        Followers: ${this.followers.map(follower => follower.name).join(', ') || 0}
+        Following: ${this.following.map(following => following.name).join(', ') || 0}
+        `
     }
 }
 
