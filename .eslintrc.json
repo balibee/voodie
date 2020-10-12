@@ -1,0 +1,24 @@
+{
+  "extends": [
+    "airbnb",
+    "prettier",
+    "prettier/@typescript-eslint",
+    "prettier/babel",
+    "prettier/flowtype",
+    "prettier/react",
+    "prettier/standard",
+    "prettier/unicorn",
+    "prettier/vue"
+  ],
+  "rules": {
+    "eqeqeq": "off",
+    "class-methods-use-this": "off",
+    "no-plusplus": "off",
+    "no-param-reassign": [2, { "props": false }]
+  },
+  "settings": {
+    "react": {
+      "version": "latest"
+    }
+  }
+}

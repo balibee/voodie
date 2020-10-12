@@ -1,17 +1,34 @@
 {
   "name": "voodie",
-  "version": "1.0.0",
-  "description": "Meal planning app for vegan foodies\r Project for Coyotoiv School of Software Engineering",
-  "main": "index.js",
+  "version": "0.0.1",
+  "description": "Meal planning app for vegan foodies.\r Project for Coyotoiv School of Software Engineering",
+  "main": "node src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "lint-staged"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
+  },
+  "lint-staged": {
+    "./**/*.js": [
+      "prettier --write",
+      "eslint --fix"
+    ]
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/balibee/voodie.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "vegan",
+    "meal planner",
+    "recipe"
+  ],
+  "author": "Regina Boebner <r.boebner@protonmail.ch>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/balibee/voodie/issues"
@@ -20,5 +37,17 @@
   "dependencies": {
     "emoji": "^0.3.2",
     "node-emoji": "^1.10.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.21.4",
+    "eslint-plugin-react-hooks": "^4.0.0",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.4.0",
+    "prettier": "^2.1.2"
   }
 }
