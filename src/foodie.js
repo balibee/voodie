@@ -38,6 +38,10 @@ class Foodie {
     this.recipes.push(recipe)
   }
 
+  deleteRecipe(recipe) {
+    this.recipes.splice(this.recipes.indexOf(recipe), 1)
+  }
+
   follow(person) {
     this.following.push(person)
     person.followers.push(this)
