@@ -10,7 +10,6 @@ class Foodie {
 
   rateRecipe(recipe, rating, review) {
     if (rating > 0 && rating <= 5) {
-      console.log(`${this.name} rates ${recipe.name} ${rating} stars!`)
       recipe.reviews.push([this.name, rating, review])
       console.log(`${this.name} rates ${recipe.name} ${rating} stars!`)
 
