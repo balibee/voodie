@@ -12,25 +12,33 @@ class Foodie {
     if (rating > 0 && rating <= 5) {
       console.log(`${this.name} rates ${recipe.name} ${rating} stars!`)
       recipe.reviews.push([this.name, rating, review])
+      console.log(`${this.name} rates ${recipe.name} ${rating} stars!`)
+
       for (let i = 1; i <= 5; i++) {
         if (rating === i) {
           recipe.starRatings[i - 1]++
         }
       }
+
       recipe.totalRatings++
     }
     return `Please choose a number between 1 and 5.`
   }
 
   favorite(recipe) {
+    if (this.favoritedRecipes.find(recipe)) return
+
     recipe.favorites++
     this.favoritedRecipes.push(recipe)
   }
 
   unfavorite(recipe) {
+    if (!this.favoritedRecipes.find(recipe)) return
+
     if (recipe.favorites > 0) {
       recipe.favorites--
     }
+
     this.favoritedRecipes.splice(this.favoritedRecipes.indexOf(recipe), 1)
   }
 
