@@ -16,6 +16,7 @@ class Recipe {
     if (this.totalRatings === 0) {
       return `No rating yet`
     }
+
     return (
       (5 * this.starRatings[4] +
         4 * this.starRatings[3] +
@@ -38,9 +39,11 @@ Instructions: ${this.instructions}`
 
   get allReviews() {
     console.log(`Reviews for ${this.name}`)
+
     if (this.reviews.length === 0) {
       return `There are no reviews yet.`
     }
+
     return this.reviews.map(review => `${review[1]} stars ${review[2]} -${review[0]}`).join('\n')
   }
 }
