@@ -2,12 +2,12 @@
 
 class Foodie {
 
-    -name: string
-    -bio: string
-    -recipes: [Recipe]
-    -favoritedRecipes: [Recipe]
-    -followers: Array
-    -following: Array
+    +name: string
+    +bio: string
+    +recipes: [Recipe]
+    +favoritedRecipes: [Recipe]
+    +followers: Array
+    +following: Array
 
     constructor(name: string)
     rateRecipe(recipe: Recipe, rating, review)
@@ -17,21 +17,20 @@ class Foodie {
     deleteRecipe(recipe: Recipe)
     follow(foodie: Foodie)
     unfollow(foodie: Foodie)
-    getProfile();
 }
 
 class Recipe {
-    -name: string
-    -ingredients: Array
-    -instructions: Array
-    -cookTime: number
-    -serves: number
-    -totalRatings: number
-    -reviews: Array
-    -starRatings: Array
-    -recipeRating: number
-    -favorites: number
-    -mealType: string
+    +name: string
+    +ingredients: Array
+    +instructions: Array
+    +cookTime: number
+    +serves: number
+    +totalRatings: number
+    +reviews: Array
+    +starRatings: Array
+    +recipeRating: number
+    +favorites: number
+    +tags: [string]
 
     constructor(name: string, ingredients: Array, instructions: Array, cookTime: number, serves: number)
     getRating();
@@ -39,69 +38,64 @@ class Recipe {
     getAllReviews();
 }
 
+class MealPlannerPage {
+
+}
 
 class MealPlanner {
-    -breakfast: Array
-    -lunch: Array
-    -dinner: Array
-    -calendar: Calendar
-
-    generateMealPlan();
+    generateMealPlan(foodie: Foodie, period: Period): MonthlyMealPlan | WeeklyMealPlan | DailyMealPlan
 }
 
 class MonthlyMealPlan {
-    generateMealPlan(breakfast, lunch, dinner, month)
+    +mealPlans: [DailyMealPlan]
 }
 
 class WeeklyMealPlan {
-    generateMealPlan(breakfast, lunch, dinner, week)
+    +mealPlans: [DailyMealPlan]
 }
 
 class DailyMealPlan {
-    generateMealPlan(breakfast, lunch, dinner, day)
+    +breakfast: Recipe
+    +lunch: Recipe
+    +dinner: Recipe
 }
 
 
 
-class Login {
-   -name: string
-    -email: string
-    -password: string
+class LoginPage {
+    +username: string
+    +email: string
+    +password: string
 
-    login(name, email, password)
+    login(username, email, password)
 }
 
-class SignUp {
-    -name: string
-    -email: string
-    -password: string
+class SignUpPage {
 
-    constructor(name: string, email: string, password: string)
-    signup(name, email, password)
+    signup(username: string, email: string, password: string) : Foodie
 }
 
-class Profile {
-    -foodie: Foodie
+class ProfilePage {
+    +foodie: Foodie
+
+    displayProfile();
 }
 
-Profile "1" *-- "1" Foodie
-Foodie -> Login
-Foodie -> SignUp
-Foodie "1" o----> "0..*" Recipe : creates/deletes, rates, un/favorites, edits, prints
+ProfilePage "1" *-- "1" Foodie
 
-MealPlanner "1" *--- "1" MonthlyMealPlan : generates
-MealPlanner *--- WeeklyMealPlan : generates
-MealPlanner *--- DailyMealPlan : generates
-MonthlyMealPlan "1" o---- "1..4" WeeklyMealPlan
-WeeklyMealPlan "4" o--- "1..30" DailyMealPlan
+Foodie <-right- LoginPage
+Foodie <-right- SignUpPage
+Foodie "1" o-> "0..*" Recipe : creates
+Foodie "1" --> "1" MealPlanner : uses
 
-Foodie "1" *-- "1" MealPlanner : creates, customizes
+MealPlanner "1" --- "1" MonthlyMealPlan : generates
+MealPlanner -- WeeklyMealPlan : generates
+MealPlanner -- DailyMealPlan : generates
 
-Recipe ----> "0..*" Foodie : created/deleted by, rated by, un/favorited by, edited by, printed by
+MonthlyMealPlan "1" *- "1..30" DailyMealPlan
+WeeklyMealPlan "1" *- "1..7" DailyMealPlan
 
-Recipe "0..*" ---o DailyMealPlan
-Recipe "0..*" ---o WeeklyMealPlan
-Recipe "0..*" ---o MonthlyMealPlan
-
+Recipe <- "0..*" Foodie : uses
+Recipe "0..*" -o DailyMealPlan
 
 @enduml
