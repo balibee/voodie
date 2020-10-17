@@ -93,8 +93,13 @@ class SignUpPage {
 
 class ProfilePage {
     +foodie: Foodie
+    displayProfile(foodie: Foodie);
+}
 
-    displayProfile();
+class Preferences {
+    +diet: [String]
+    +dislikes: [String]
+    +cuisines: [String]
 }
 
 ProfilePage "1" *-- "1" Foodie : displays
