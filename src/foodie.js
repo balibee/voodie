@@ -59,17 +59,6 @@ class Foodie {
     this.following.slice(this.following.indexOf(person), 1)
     console.log(`${this.name} unfollowed ${person.name}`)
   }
-
-  get profile() {
-    return `
-        Name: ${this.name}
-        Bio: ${this.bio}
-        Recipes: ${this.recipes.map(recipe => recipe.name).join(', ') || `No recipes submitted yet`}
-        Favorited Recipes: ${this.favoritedRecipes.map(recipe => recipe.name).join(', ') || `No favorites yet`}
-        Followers: ${this.followers.map(follower => follower.name).join(', ') || 0}
-        Following: ${this.following.map(following => following.name).join(', ') || 0}
-        `
-  }
 }
 
 module.exports = Foodie
