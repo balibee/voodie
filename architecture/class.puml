@@ -60,7 +60,14 @@ class DailyMealPlan {
     +dinner: Recipe
 }
 
+class InspirationPage {
+    +foodies: [Foodie]
+    +recipes: [Recipe]
 
+    displayFeaturedFoodie(foodies: [Foodie])
+    displayTopRecipesWeek(recipes: [Recipe])
+    displaySeasonalCuisines(recipes: [Recipe])
+}
 
 class LoginPage {
     +username: string
