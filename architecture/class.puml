@@ -38,6 +38,15 @@ class Recipe {
     getAllReviews();
 }
 
+class RecipePage {
+    +recipe: Recipe
+
+    displayRecipe(recipe: Recipe)
+    editRecipe(recipe: Recipe) : Recipe
+    addToMealPlanner(recipe: Recipe)
+    printRecipe(recipe: Recipe)
+    getAllReviews(recipe: Recipe)
+}
 class MealPlannerPage {
 
 class MealPlannerPage {
