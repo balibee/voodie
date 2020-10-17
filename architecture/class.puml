@@ -40,6 +40,9 @@ class Recipe {
 
 class MealPlannerPage {
 
+class MealPlannerPage {
+    +mealPlanner: MealPlanner
+    displayMealPlanner(mealPlanner: MealPlanner)
 }
 
 class MealPlanner {
