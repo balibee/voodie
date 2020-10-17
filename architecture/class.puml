@@ -34,8 +34,6 @@ class Recipe {
 
     constructor(name: string, ingredients: Array, instructions: Array, cookTime: number, serves: number)
     getRating();
-    printRecipe();
-    getAllReviews();
 }
 
 class RecipePage {
@@ -47,7 +45,6 @@ class RecipePage {
     printRecipe(recipe: Recipe)
     getAllReviews(recipe: Recipe)
 }
-class MealPlannerPage {
 
 class MealPlannerPage {
     +mealPlanner: MealPlanner
@@ -86,7 +83,7 @@ class LoginPage {
     +email: string
     +password: string
 
-    login(username, email, password)
+    login(username: string, email: string, password: string)
 }
 
 class SignUpPage {
