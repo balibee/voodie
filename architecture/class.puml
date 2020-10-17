@@ -81,21 +81,27 @@ class ProfilePage {
     displayProfile();
 }
 
-ProfilePage "1" *-- "1" Foodie
+ProfilePage "1" *-- "1" Foodie : displays
 
 Foodie <-right- LoginPage
-Foodie <-right- SignUpPage
+Foodie <-down- SignUpPage : creates
 Foodie "1" o-> "0..*" Recipe : creates
 Foodie "1" --> "1" MealPlanner : uses
+Foodie <- InspirationPage : shows featured foodies
 
-MealPlanner "1" --- "1" MonthlyMealPlan : generates
-MealPlanner -- WeeklyMealPlan : generates
-MealPlanner -- DailyMealPlan : generates
+MealPlanner "1" -- "1" MonthlyMealPlan : generates
+MealPlanner -down- WeeklyMealPlan : generates
+MealPlanner - DailyMealPlan : generates
+MealPlanner <-right-* MealPlannerPage : displays
 
-MonthlyMealPlan "1" *- "1..30" DailyMealPlan
-WeeklyMealPlan "1" *- "1..7" DailyMealPlan
+MonthlyMealPlan "1" *-down- "1..30" DailyMealPlan
+WeeklyMealPlan "1" *-- "1..7" DailyMealPlan
 
-Recipe <- "0..*" Foodie : uses
+Recipe <-right- "0..*" Foodie : uses
 Recipe "0..*" -o DailyMealPlan
+Recipe <-down-* RecipePage : displays
+Recipe <-up- InspirationPage: displays
+
+Preferences <-up- Foodie : sets
 
 @enduml
