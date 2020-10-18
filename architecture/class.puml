@@ -50,8 +50,9 @@ class RecipePage {
 }
 
 class MealPlannerPage {
-    +mealPlanner: MealPlanner
-    displayMealPlanner(mealPlanner: MealPlanner)
+
+    +mealPlanner : MealPlanner
+    askMealPlannerToPlanMeals(mealPlanner: MealPlanner) : DailyMealPlan
 }
 
 class MealPlanner {
