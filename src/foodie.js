@@ -6,6 +6,9 @@ class Foodie {
     this.followers = []
     this.following = []
     this.bio = ''
+    this.diet = []
+    this.dislikes = []
+    this.preferredCuisines = []
   }
 
   rateRecipe(recipe, rating, review) {
