@@ -4,7 +4,7 @@
   "description": "Meal planning app for vegan foodies.\r Project for Coyotoiv School of Software Engineering",
   "main": "node src/index.js",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "node ./bin/www",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "lint-staged"
   },
@@ -36,7 +36,13 @@
   "homepage": "https://github.com/balibee/voodie#readme",
   "dependencies": {
     "emoji": "^0.3.2",
-    "node-emoji": "^1.10.0"
+    "node-emoji": "^1.10.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "pug": "2.0.0-beta11"
   },
   "devDependencies": {
     "eslint": "^7.2.0",
