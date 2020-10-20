@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1= title
+  p email
+  input(type='text' name='email' autofocus)
+
+  p password
+  input(type='text' name='password' autofocus)
+  p
+  button(type='button' href='/homepage') Login

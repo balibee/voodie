@@ -2,5 +2,11 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
-   span Hello, user!
+  p Welcome to #{title}, a vegan meal planning app!
+  p Already have an account?
+
+  a(class='button' href='/login') Login
+
+  p Are you new here? Sign Up
+
+  a(class='button' href='/signup') Sign Up
