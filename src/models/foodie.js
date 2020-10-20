@@ -1,6 +1,8 @@
 class Foodie {
-  constructor(name) {
+  constructor(name, email, password) {
     this.name = name
+    this.email = email
+    this.password = password
     this.recipes = []
     this.favoritedRecipes = []
     this.followers = []
