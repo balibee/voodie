@@ -3,13 +3,16 @@ extends layout
 block content
   h1= title
   form(action='/signup' name='signup-form' method='POST')
+    p Name
+    input(type='text' name='name' autofocus)
+
     p Email
-    input(type='email' name='email' autofocus)
+    input(type='email' name='email')
 
     p Password
-    input(type='password' name='password' autofocus)
+    input(type='password' name='password')
     p
-    input(type='submit' href='/homepage' value='Sign Up')
+    input(type='submit'  value='Sign Up')
 
   p Already have an account?
   a(class='button' href='/login') Login
