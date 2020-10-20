@@ -83,11 +83,11 @@ class InspirationPage {
 }
 
 class LoginPage {
-    login(email: string | username: string, password: string)
+    login(email: string, password: string)
 }
 
 class SignUpPage {
-    signup(username: string, email: string, password: string) : Foodie
+    signup(email: string, password: string) : Foodie
 }
 
 class ProfilePage {
