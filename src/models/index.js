@@ -12,16 +12,7 @@ const bananaBread = new Recipe(
   4
 )
 
-const berrySmoothie = new Recipe(
-  'Mixed Berry Smoothie',
-  ['1 cup mixed berries', '2 cups non-dairy milk', '1 banana'],
-  'Blend until smooth',
-  5,
-  2
-)
-
 regina.createRecipe(bananaBread)
-regina.createRecipe(berrySmoothie)
 
 jill.follow(regina)
 jill.rateRecipe(bananaBread, 5, 'yum')
