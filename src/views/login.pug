@@ -2,10 +2,13 @@ extends layout
 
 block content
   h1= title
-  p email
+  p Email
   input(type='text' name='email' autofocus)
 
-  p password
+  p Password
   input(type='text' name='password' autofocus)
   p
   button(type='button' href='/homepage') Login
+
+  p Don't have an account?
+  a(class='button' href='/signup') Sign Up
