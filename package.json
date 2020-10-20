@@ -2,7 +2,6 @@
   "name": "voodie",
   "version": "0.0.1",
   "description": "Meal planning app for vegan foodies.\r Project for Coyotoiv School of Software Engineering",
-  "main": "node src/index.js",
   "scripts": {
     "start": "node ./bin/www",
     "test": "echo \"Error: no test specified\" && exit 1",
