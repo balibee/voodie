@@ -34,13 +34,14 @@
   },
   "homepage": "https://github.com/balibee/voodie#readme",
   "dependencies": {
-    "emoji": "^0.3.2",
-    "node-emoji": "^1.10.0",
+    "bootstrap": "^4.5.3",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "emoji": "^0.3.2",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
+    "node-emoji": "^1.10.0",
     "pug": "2.0.0-beta11"
   },
   "devDependencies": {
