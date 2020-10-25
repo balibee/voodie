@@ -40,6 +40,8 @@
     "emoji": "^0.3.2",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
+    "mongoose": "^5.10.9",
+    "mongoose-autopopulate": "^0.12.2",
     "morgan": "~1.9.1",
     "node-emoji": "^1.10.0",
     "nodemon": "^2.0.6",
