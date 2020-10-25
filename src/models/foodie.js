@@ -1,18 +1,56 @@
-class Foodie {
-  constructor(name, email, password) {
-    this.name = name
-    this.email = email
-    this.password = password
-    this.recipes = []
-    this.favoritedRecipes = []
-    this.followers = []
-    this.following = []
-    this.bio = ''
-    this.diet = []
-    this.dislikes = []
-    this.preferredCuisines = []
-  }
+const mongoose = require('mongoose')
+const autopopulate = require('mongoose-autopopulate')
+require('./recipe')
 
+const foodieSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    unique: true,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  recipes: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Recipe',
+      autopopulate: true,
+    },
+  ],
+  favoritedRecipes: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Recipe',
+      autopopulate: true,
+    },
+  ],
+  followers: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Foodie',
+      autopopulate: true,
+    },
+  ],
+  following: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Foodie',
+      autopopulate: true,
+    },
+  ],
+  bio: String,
+  diet: [],
+  dislikes: [],
+  preferredCuisines: [],
+})
+
+class Foodie {
   rateRecipe(recipe, rating, review) {
     if (rating > 0 && rating <= 5) {
       recipe.reviews.push([this.name, rating, review])
@@ -30,7 +68,7 @@ class Foodie {
   }
 
   favorite(recipe) {
-    if (this.favoritedRecipes.find(recipe)) return
+    // if (this.favoritedRecipes.find(recipe)) return
 
     recipe.favorites++
     this.favoritedRecipes.push(recipe)
@@ -66,4 +104,8 @@ class Foodie {
   }
 }
 
-module.exports = Foodie
+foodieSchema.loadClass(Foodie)
+foodieSchema.plugin(autopopulate)
+module.exports = mongoose.model('Foodie', foodieSchema)
+
+// module.exports = Foodie

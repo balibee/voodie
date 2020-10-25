@@ -1,17 +1,34 @@
-class Recipe {
-  constructor(name, ingredients, instructions, cookTime, serves) {
-    this.name = name
-    this.ingredients = [ingredients]
-    this.instructions = instructions
-    this.cookTime = cookTime
-    this.serves = serves
-    this.totalRatings = 0
-    this.reviews = []
-    this.starRatings = [[0], [0], [0], [0], [0]]
-    this.recipeRating = 0
-    this.favorites = 0
-  }
+const mongoose = require('mongoose')
 
+const recipeSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  ingredients: {
+    type: String,
+    required: true,
+  },
+  instructions: {
+    type: String,
+    required: true,
+  },
+  cookTime: {
+    type: String,
+    required: true,
+  },
+  serves: {
+    type: String,
+    required: true,
+  },
+  totalRatings: 0,
+  reviews: [],
+  starRatings: [[0], [0], [0], [0], [0]],
+  recipeRating: 0,
+  favorites: Number,
+})
+
+class Recipe {
   get rating() {
     if (this.totalRatings === 0) {
       return `No rating yet`
@@ -27,7 +44,7 @@ class Recipe {
     ).toFixed(1)
   }
 
-  get printRecipe() {
+  printRecipe() {
     return `Recipe printed successfully!
 ${this.name}
 Rating: ${this.rating} out of 5.0 stars
@@ -48,4 +65,5 @@ Instructions: ${this.instructions}`
   }
 }
 
-module.exports = Recipe
+recipeSchema.loadClass(Recipe)
+module.exports = mongoose.model('Recipe', recipeSchema)
