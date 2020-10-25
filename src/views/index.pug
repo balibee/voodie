@@ -1,12 +1,30 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}, a vegan meal planning app!
-  p Already have an account?
 
-  a(class='button' href='/login') Login
+  nav.navbar.navbar-expand-md.navbar-light.bg-light.fixed-top
+    .container-fluid
+      a.navbar-brand(href='/') Voodie
+      button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarsExampleDefault' aria-controls='navbarsExampleDefault' aria-expanded='false' aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      #navbarsExampleDefault.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto.mb-2.mb-md-0
+          li.nav-item.active
+            a.nav-link(aria-current='page' href='/') Home
+          li.nav-item
+            a.nav-link(href='#') Features
+        a.btn.btn-outline-success(href="/login" role="button") Login
 
-  p Are you new here? Sign Up
+  main.container
+    .text-center.py-5.px-3
+      h1 Welcome to Voodie!
+      p.lead Meal planning for vegan foodies
 
-  a(class='button' href='/signup') Sign Up
+  .container
+    .row.justify-content-center
+      .col.text-center
+        p Already have an account?
+        a.btn.btn-primary(href='/login', role='button') Login
+      .col.text-center
+        p Are you new here?
+        a.btn.btn-primary(href='/signup', role='button') Sign Up

@@ -1,0 +1,11 @@
+extends layout
+
+block content
+    h1 #{foodie.name}
+    h2 Favorited Recipes: (#{foodie.favoritedRecipes.length})
+
+    each recipe in foodie.favoritedRecipes
+        if foodie.favoritedRecipes.length == 0
+            p no favorites yet!
+        else
+            p #{foodie.favoritedRecipes.map(recipe => recipe.name + recipe.favorites).join(', ')}
