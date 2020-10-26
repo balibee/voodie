@@ -68,7 +68,7 @@ class Foodie {
   }
 
   async favorite(recipe) {
-    if (this.favoritedRecipes.find(recipe)) return
+    if (this.favoritedRecipes.includes(recipe)) return
 
     recipe.favorites++
     this.favoritedRecipes.push(recipe)
@@ -77,7 +77,7 @@ class Foodie {
   }
 
   unfavorite(recipe) {
-    if (!this.favoritedRecipes.find(recipe)) return
+    if (!this.favoritedRecipes.includes(recipe)) return
 
     if (recipe.favorites > 0) {
       recipe.favorites--
@@ -98,12 +98,10 @@ class Foodie {
   follow(person) {
     this.following.push(person)
     person.followers.push(this)
-    console.log(`${this.name} is now following ${person.name}!`)
   }
 
   unfollow(person) {
     this.following.slice(this.following.indexOf(person), 1)
-    console.log(`${this.name} unfollowed ${person.name}`)
   }
 }
 

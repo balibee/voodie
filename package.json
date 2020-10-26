@@ -37,17 +37,16 @@
     "bootstrap": "^4.5.3",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
-    "emoji": "^0.3.2",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "mongoose": "^5.10.9",
     "mongoose-autopopulate": "^0.12.2",
     "morgan": "~1.9.1",
-    "node-emoji": "^1.10.0",
     "nodemon": "^2.0.6",
     "pug": "2.0.0-beta11"
   },
   "devDependencies": {
+    "connect-livereload": "^0.6.1",
     "eslint": "^7.2.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-prettier": "^6.12.0",
@@ -57,6 +56,7 @@
     "eslint-plugin-react-hooks": "^4.0.0",
     "husky": "^4.3.0",
     "lint-staged": "^10.4.0",
+    "livereload": "^0.9.1",
     "prettier": "^2.1.2"
   }
 }

@@ -5,6 +5,7 @@ const password = process.env.MONGODB_PASSWORD
 const dbName = process.env.MONGODB_DATABASE
 
 mongoose.set('debug', true)
+mongoose.set('useCreateIndex', true)
 
 mongoose
   .connect(`mongodb+srv://${username}:${password}@cluster0.wb2fx.mongodb.net/${dbName}?retryWrites=true&w=majority`, {

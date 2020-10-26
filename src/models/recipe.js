@@ -7,11 +7,11 @@ const recipeSchema = new mongoose.Schema({
     required: true,
   },
   ingredients: {
-    type: String,
+    type: [String],
     required: true,
   },
   instructions: {
-    type: String,
+    type: [String],
     required: true,
   },
   cookTime: {
@@ -26,7 +26,7 @@ const recipeSchema = new mongoose.Schema({
   reviews: [],
   starRatings: [[0], [0], [0], [0], [0]],
   recipeRating: 0,
-  favorites: Number,
+  favorites: { type: Number, default: 0 },
 })
 
 class Recipe {

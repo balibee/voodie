@@ -16,22 +16,23 @@ router.get('/', async (req, res) => {
   res.send(await Foodie.find(query))
 })
 
-// Create foodies
 router.get('/initialize', async (req, res) => {
+  // create foodies
   const jill = await Foodie.create({ name: 'jill', email: 'jill@coyotiv.com', password: 'mypassword' })
   const steve = await Foodie.create({ name: 'steve', email: 'steve@coyotiv.com', password: 'mypassword' })
 
   // create recipe
   const bananabread = await Recipe.create({
     name: 'banana bread',
-    ingredients: 'banana',
-    instructions: 'mix and bake',
+    ingredients: ['banana'],
+    instructions: ['mix and bake'],
     cookTime: 30,
     serves: 4,
   })
 
   await jill.createRecipe(bananabread)
 
+  // favorite recipe
   await steve.favorite(bananabread)
 
   res.send(200)

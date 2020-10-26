@@ -15,7 +15,7 @@ block content
         a.btn.btn-outline-success(href="/login" role="button") Login
 
   signup.container
-    form.form-signin
+    form.form-signin(method='POST' action='/signup')
       h1.h3.mb-3.font-weight-normal Sign Up
       label.sr-only(for='inputName')
       input#inputName.form-control(type='text' name='name' placeholder='Full Name' required='' autofocus='')
