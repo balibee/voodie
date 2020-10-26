@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const autopopulate = require('mongoose-autopopulate')
 
 const recipeSchema = new mongoose.Schema({
   name: {
@@ -66,4 +67,5 @@ Instructions: ${this.instructions}`
 }
 
 recipeSchema.loadClass(Recipe)
+recipeSchema.plugin(autopopulate)
 module.exports = mongoose.model('Recipe', recipeSchema)
