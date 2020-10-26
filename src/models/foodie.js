@@ -67,11 +67,13 @@ class Foodie {
     return `Please choose a number between 1 and 5.`
   }
 
-  favorite(recipe) {
-    // if (this.favoritedRecipes.find(recipe)) return
+  async favorite(recipe) {
+    if (this.favoritedRecipes.find(recipe)) return
 
     recipe.favorites++
     this.favoritedRecipes.push(recipe)
+    await this.save()
+    await recipe.save()
   }
 
   unfavorite(recipe) {
@@ -84,8 +86,9 @@ class Foodie {
     this.favoritedRecipes.splice(this.favoritedRecipes.indexOf(recipe), 1)
   }
 
-  createRecipe(recipe) {
+  async createRecipe(recipe) {
     this.recipes.push(recipe)
+    await this.save()
   }
 
   deleteRecipe(recipe) {
