@@ -18,12 +18,12 @@ block content
     form.form-signin
       h1.h3.mb-3.font-weight-normal Sign Up
       label.sr-only(for='inputName')
-      input#inputName.form-control(type='text' placeholder='Full Name' required='' autofocus='')
+      input#inputName.form-control(type='text' name='name' placeholder='Full Name' required='' autofocus='')
       label.sr-only(for='inputEmail')
-      input#inputEmail.form-control(type='email' placeholder='Email address' required='')
+      input#inputEmail.form-control(type='email' name= 'email' placeholder='Email address' required='')
       label.sr-only(for='inputPassword')
-      input#inputPassword.form-control(type='password' placeholder='Password' required='')
-      button.btn.btn-lg.btn-primary.btn-block(href='/homepage' type='submit') Register
+      input#inputPassword.form-control(type='password' name='password' placeholder='Password' required='')
+      button.btn.btn-lg.btn-primary.btn-block(type='submit') Register
       br
       p Already have an account?
       a(class='button' href='/login') Sign in
