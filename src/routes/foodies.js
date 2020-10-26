@@ -3,20 +3,7 @@ const express = require('express')
 const router = express.Router()
 
 const Foodie = require('../models/foodie')
-// const Recipe = require('../models/recipe')
-
-// // signup foodies
-// const jill = new Foodie({ name: 'jill', email: 'jill@coyotiv.com', password: 'abc123' })
-// const steve = new Foodie({ name: 'steve', email: 'steve@coyotiv.com', password: 'abc123' })
-
-// // create recipe
-// const bananabread = new Recipe({
-//   name: 'Banana Bread',
-//   ingredients: 'banana',
-//   instructions: 'mix and bake',
-//   cookTime: 25,
-//   serves: 4,
-// })
+const Recipe = require('../models/recipe')
 
 /* GET all foodies listing. */
 router.get('/', async (req, res) => {
@@ -27,6 +14,27 @@ router.get('/', async (req, res) => {
   }
 
   res.send(await Foodie.find(query))
+})
+
+// Create foodies
+router.get('/initialize', async (req, res) => {
+  const jill = await Foodie.create({ name: 'jill', email: 'jill@coyotiv.com', password: 'mypassword' })
+  const steve = await Foodie.create({ name: 'steve', email: 'steve@coyotiv.com', password: 'mypassword' })
+
+  // create recipe
+  const bananabread = await Recipe.create({
+    name: 'banana bread',
+    ingredients: 'banana',
+    instructions: 'mix and bake',
+    cookTime: 30,
+    serves: 4,
+  })
+
+  await jill.createRecipe(bananabread)
+
+  await steve.favorite(bananabread)
+
+  res.send(200)
 })
 
 // Foodie page
