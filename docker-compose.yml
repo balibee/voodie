@@ -1,9 +1,9 @@
-version: '3'
+version: "3"
 services:
-  app:
-    image: voodie
+  backend:
+    image: backend
     build:
-      context: .
+      context: backend
       dockerfile: Dockerfile
     environment:
       - MONGODB_CONNECTION_STRING=mongodb://mongo/voodie
@@ -11,7 +11,8 @@ services:
       - 3000:3000
       - 35729:35729
     volumes:
-      - ./src:/app/src
+      - ./backend/src:/app/src
+      - ./backend/test:/app/test
   mongo:
     image: mongo
     ports:
