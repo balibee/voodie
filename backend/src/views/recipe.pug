@@ -1,0 +1,93 @@
+extends layout
+
+block content
+  nav.navbar.navbar-expand-md.navbar-light.bg-light.fixed-top
+    .container-fluid
+      a.navbar-brand(href='/') Voodie
+      button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarsExampleDefault' aria-controls='navbarsExampleDefault' aria-expanded='false' aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      #navbarsExampleDefault.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto.mb-2.mb-md-0
+          li.nav-item.active
+            a.nav-link(aria-current='page' href='/') Home
+          li.nav-item
+            a.nav-link(href='#') Meal Planner
+          li.nav-item
+            a.nav-link(href='#') Inspiration
+          li.nav-item
+            a.nav-link(href='#') Profile
+        a.btn.btn-outline-success(href="/login" role="button") Logout
+
+  .container.recipe-page-image
+    .row
+      img.recipe-page.img-fluid(src='https://picsum.photos/600/300?random=1', alt='...')
+      svg.bi.bi-plus-circle(width='3em', height='3em', viewBox='0 0 16 16', fill='currentColor', xmlns='http://www.w3.org/2000/svg')
+        path(fill-rule='evenodd', d='M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z')
+        path(fill-rule='evenodd', d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z')
+
+  .container
+    .row
+      h2.text-center Ultimate Bean and Rice Burrito
+      .row
+        .col-3.text-center
+          p Heart
+        .col-3.text-center
+          p Ratings
+        .col-3.text-center
+          p Cook Time
+        .col-3.text-center
+          p Servings
+      p Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, illum molestias nostrum illo voluptate fugiat neque, quas natus architecto itaque error quibusdam a inventore deserunt, id nam maiores dolores porro?
+
+    .row
+      .container.ingredient-list
+        table.table
+          thead
+            tr
+              th(scope='col') Qty
+              th(scope='col') Ingredient
+          tbody
+            tr
+              th(scope='row') 1 cup
+              td Basmati Rice, cooked
+            tr
+              th(scope='row') 4
+              td Wraps
+            tr
+              th(scope='row') 1 tsp
+              td Seasoning
+            tr
+              th(scope='row') 1 can
+              td Red Kidney Beans, rinsed and drained
+            tr
+              th(scope='row') 1
+              td Green Bell Pepper, sliced
+
+      .container.instructions
+        h2 Steps
+        .form-check
+          input.form-check-input#defaultCheck1(type='checkbox')
+          label.form-check-label(for='defaultCheck1') To make the beans, heat the oil in a pan and fry the garlic for a minute, then stir in the chipotle paste. Tip in the tomatoes, stir and bring to a simmer. Season with salt. Simmer until thick, add the beans and cook briefly (make sure any water gets cooked off), then stir in the coriander.
+        br
+        .form-check
+          input.form-check-input#defaultCheck1(type='checkbox')
+          label.form-check-label(for='defaultCheck1') If you are using cold cooked rice, then warm it through, stir in the lime juice, red onion and nuts and season well.
+        br
+        .form-check
+          input.form-check-input#defaultCheck1(type='checkbox')
+          label.form-check-label(for='defaultCheck1') Lay out the tortillas and sprinkle over some spinach, add some avocado slices and some rice, then top with the bean mix. Add a shake of hot sauce, if you like. Roll the bottom up, then fold the sides in to stop the filling falling out as you roll. Wrap tightly in foil, if you like, and cut in half.
+
+    .row
+      form.personal-note
+        .form-group
+          label(for='formGroupExampleInput')
+          textarea.form-control(type='text', placeholder='Add personal note about this recipe')
+
+  .container.d-flex
+    .row.justify-content-sm-center
+      .col-sm-auto
+        button.btn.btn-primary.btn-sm(type='button') Vegan
+        button.btn.btn-primary.btn-sm(type='button') Gluten Free
+        button.btn.btn-primary.btn-sm(type='button') Dinner
+        button.btn.btn-primary.btn-sm(type='button') Lunch
+        button.btn.btn-primary.btn-sm(type='button') Mexican

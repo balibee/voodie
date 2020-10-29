@@ -1,0 +1,29 @@
+extends layout
+
+block content
+  nav.navbar.navbar-expand-md.navbar-light.bg-light.fixed-top
+    .container-fluid
+      a.navbar-brand(href='/') Voodie
+      button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarsExampleDefault' aria-controls='navbarsExampleDefault' aria-expanded='false' aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      #navbarsExampleDefault.collapse.navbar-collapse
+        ul.navbar-nav.mr-auto.mb-2.mb-md-0
+          li.nav-item.active
+            a.nav-link(aria-current='page' href='/') Home
+          li.nav-item
+            a.nav-link(href='#') Features
+        a.btn.btn-outline-success(href="/login" role="button") Login
+
+  signup.container
+    form.form-signin(method='POST' action='/signup')
+      h1.h3.mb-3.font-weight-normal Sign Up
+      label.sr-only(for='inputName')
+      input#inputName.form-control(type='text' name='name' placeholder='Full Name' required='' autofocus='')
+      label.sr-only(for='inputEmail')
+      input#inputEmail.form-control(type='email' name= 'email' placeholder='Email address' required='')
+      label.sr-only(for='inputPassword')
+      input#inputPassword.form-control(type='password' name='password' placeholder='Password' required='')
+      button.btn.btn-lg.btn-primary.btn-block(type='submit') Register
+      br
+      p Already have an account?
+      a(class='button' href='/login') Sign in
