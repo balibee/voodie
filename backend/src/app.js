@@ -1,9 +1,9 @@
-require('./database-connection')
 const createError = require('http-errors')
 const express = require('express')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
+require('./database-connection')
 
 const indexRouter = require('./routes/index')
 const foodiesRouter = require('./routes/foodies')
@@ -34,12 +34,12 @@ app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
 
 // routers
-app.use('/', indexRouter)
-app.use('/foodies', foodiesRouter)
-app.use('/login', loginRouter)
-app.use('/signup', signupRouter)
-app.use('/homepage', homepageRouter)
-app.use('/recipe', recipeRouter)
+app.use('/api', indexRouter)
+app.use('/api/foodies', foodiesRouter)
+app.use('/api/login', loginRouter)
+app.use('/api/signup', signupRouter)
+app.use('/api/homepage', homepageRouter)
+app.use('/api/recipe', recipeRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

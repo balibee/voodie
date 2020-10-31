@@ -4,7 +4,7 @@
   "description": "Meal planning app for vegan foodies.\r Project for Coyotoiv School of Software Engineering",
   "scripts": {
     "start": "node ./bin/www",
-    "test": "jest --watchAll",
+    "test": "jest --testEnvironment=node --verbose --forceExit --watchAll --maxWorkers=1",
     "test-coverage": " jest --collect-coverage --testEnvironment=node --forceExit --maxWorkers=1",
     "lint": "lint-staged"
   },
