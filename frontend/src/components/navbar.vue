@@ -5,7 +5,7 @@ export default {
 </script>
 
 <template lang="pug">
-  nav.navbar.navbar-expand-md.navbar-light.bg-light.fixed-top
+  nav.navbar.navbar-expand-md.navbar-light.bg-light
     .container-fluid
       a.navbar-brand(href='/') Voodie
       button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarsExampleDefault' aria-controls='navbarsExampleDefault' aria-expanded='false' aria-label='Toggle navigation')
