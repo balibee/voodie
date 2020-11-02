@@ -6,6 +6,7 @@ export default {
 
 <style lang="scss">
 .daily-recipe-card {
+  padding-top: 5px;
   padding-bottom: 25px;
 }
 
