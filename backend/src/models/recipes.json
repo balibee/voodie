@@ -22,7 +22,8 @@
       "Serve warm with maple syrup."
     ],
     "cookTime": 30,
-    "serves": 4
+    "serves": 4,
+    "tags": ["breakfast"]
   },
 
   {
@@ -39,7 +40,8 @@
       "Combine the almond milk, banana, frozen fruit, coconut oil, chia seeds, and powdered ginger in a blender and purée until smooth. Pour into a glass and serve immediately."
     ],
     "cookTime": 5,
-    "serves": 1
+    "serves": 1,
+    "tags": ["breakfast", "smoothies", "low-carb"]
   },
 
   {
@@ -47,15 +49,15 @@
     "description": "This spicy vegan supper is big on taste. It&rsquo;s simple to make and packed with chunky tandoori-spiced tofu on a cool mint, yogurt and red cabbage relish",
     "ingredients": [
       "500g red cabbage, shredded",
-      "4 heaped tbsp dairy-free yogurt (we used Alpro Plain with Coconut)",
+      "4 tbsp dairy-free yogurt",
       "3 tbsp mint sauce",
-      "3 x 200g packs tofu , each cut into 15 cubes",
+      "600g packs tofu, cubed",
       "2 tbsp tandoori curry paste",
       "2 tbsp oil",
-      "2 onions , sliced",
+      "2 onions, sliced",
       "2 large garlic cloves , sliced",
       "8 wraps",
-      "2 limes , cut into quarters"
+      "2 limes, cut into quarters"
     ],
     "instructions": [
       "Mix the cabbage, yogurt and mint sauce, season and set aside.",
@@ -64,7 +66,8 @@
       "Warm the chapatis following pack instructions, then top each one with some cabbage, followed by the curried tofu and a good squeeze of lime."
     ],
     "cookTime": 25,
-    "serves": 4
+    "serves": 4,
+    "tags": ["lunch", "dinner", "quick"]
   },
 
   {
@@ -93,7 +96,8 @@
       "Serve the salad and peanut lime dressing immediately, or divide the undressed salad between four containers (about 2 cups each) and divide the dressing between four smaller containers (about 2 Tbsp or slightly more each). Refrigerate up to 4-5 days."
     ],
     "cookTime": 30,
-    "serves": 4
+    "serves": 4,
+    "tags": ["lunch", "dinner", "asian", "summer"]
   },
 
   {
@@ -122,7 +126,8 @@
       "Serve the soup hot with crackers or crusty bread for dipping."
     ],
     "cookTime": 8,
-    "serves": 6
+    "serves": 6,
+    "tags": ["lunch", "dinner", "soup", "american"]
   },
 
   {
@@ -149,6 +154,7 @@
       "Serve the pasta hot with a pinch of crushed red pepper and some crumbled feta on top, if desired)."
     ],
     "cookTime": 25,
-    "serves": 4
+    "serves": 4,
+    "tags": ["lunch", "dinner", "soup", "onepot", "paleo"]
   }
 ]
