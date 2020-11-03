@@ -1,0 +1,58 @@
+<script>
+export default {
+  name: 'Recipe'
+}
+</script>
+
+<style lang="scss"></style>
+
+<template lang="pug">
+  .recipe
+    .container.recipe-page-image
+      .row
+        img.recipe-page.img-fluid(src='https://picsum.photos/600/300?random=1', alt='...')
+        svg.bi.bi-plus-circle(width='3em', height='3em', viewBox='0 0 16 16', fill='currentColor', xmlns='http://www.w3.org/2000/svg')
+          path(fill-rule='evenodd', d='M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z')
+          path(fill-rule='evenodd', d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z')
+
+    .container
+      .row
+        h2.text-center #{recipe.name}
+        .row
+          .col-3.text-center
+            p= 'Favorites: ' + recipe.favorites
+          .col-3.text-center
+            p= 'Ratings: ' + recipe.totalRatings
+          .col-3.text-center
+            p= 'Cook Time: ' + recipe.cookTime
+          .col-3.text-center
+            p= 'Serves: ' + recipe.serves
+        p #{recipe.description}
+
+      .row
+        .container.ingredient-list
+          table.table
+            h2 Ingredients
+            tbody
+              each ingredient in recipe.ingredients
+                tr
+                  td=ingredient
+
+        .container.instructions
+          h2 Steps
+          each instruction, index in recipe.instructions
+            p= index + 1 + '. ' + instruction
+
+      .row
+        form.personal-note
+          .form-group
+            label(for='formGroupExampleInput')
+            textarea.form-control(type='text', placeholder='Add personal note about this recipe')
+            button.btn.btn-primary.btn-sm.float-right(type="submit") Save
+
+    .tags.container.d-flex
+      .row.justify-content-sm-center
+        .col-sm-auto
+          each tag in recipe.tags
+            button.btn.btn-primary.btn-sm(type='button')= tag
+</template>
