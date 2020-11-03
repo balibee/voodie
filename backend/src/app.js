@@ -10,9 +10,7 @@ const foodiesRouter = require('./routes/foodies')
 const loginRouter = require('./routes/login')
 const signupRouter = require('./routes/signup')
 const homepageRouter = require('./routes/homepage')
-const recipeRouter = require('./routes/recipe')
-const recipesRouter = require('./routes/inspiration')
-const inspirationRouter = require('./routes/inspiration')
+const recipesRouter = require('./routes/recipes')
 
 const app = express()
 
@@ -41,9 +39,7 @@ app.use('/api/foodies', foodiesRouter)
 app.use('/api/login', loginRouter)
 app.use('/api/signup', signupRouter)
 app.use('/api/homepage', homepageRouter)
-app.use('/api/recipe', recipeRouter)
 app.use('/api/recipes', recipesRouter)
-app.use('/api/inspiration', inspirationRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

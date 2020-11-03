@@ -24,9 +24,14 @@ const routes = [
     component: () => import('../views/inspiration.vue')
   },
   {
-    path: '/inspiration/recipe/:id',
-    name: 'recipe',
+    path: '/recipes/:id',
+    name: 'recipe detail',
     component: () => import('../views/recipe.vue')
+  },
+  {
+    path: '/recipes/',
+    name: 'recipes',
+    component: () => import('../views/recipes.vue')
   }
 ]
 
