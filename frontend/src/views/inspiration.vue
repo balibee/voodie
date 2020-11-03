@@ -18,9 +18,7 @@ export default {
 </script>
 
 <template lang="pug">
-  .home
-    .container.text-center
-      h2 Get inspired with these delicious recipes!
-      div(v-for="recipe in recipes")
-        router-link(:to="`/inspiration/recipe/${recipe._id}`") {{ recipe.name }}
+  .inspiration
+    .h2 Inspiration
+
 </template>
