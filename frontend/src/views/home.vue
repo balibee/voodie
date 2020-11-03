@@ -1,5 +1,4 @@
 <script>
-// import axios from 'axios'
 import mealcard from '@/components/mealcard.vue'
 
 export default {
