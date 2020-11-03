@@ -26,11 +26,12 @@ const recipeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  totalRatings: 0,
+  totalRatings: { type: Number, default: 0 },
   reviews: [],
   starRatings: [[0], [0], [0], [0], [0]],
   recipeRating: 0,
   favorites: { type: Number, default: 0 },
+  tags: [],
 })
 
 class Recipe {
