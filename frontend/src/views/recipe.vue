@@ -3,9 +3,13 @@ import { mapActions } from 'vuex'
 
 export default {
   name: 'Recipe',
-  props: ['recipe'],
   async created() {
     this.recipe = await this.fetchRecipe(this.$route.params.id)
+  },
+  data() {
+    return {
+      recipe: null
+    }
   },
   methods: {
     ...mapActions(['fetchRecipe'])
@@ -13,37 +17,8 @@ export default {
 }
 </script>
 
-<style lang="scss">
-.container.recipe-page-image {
-  position: relative;
-}
-
-img.recipe-page {
-  position: relative;
-  padding: 0;
-  display: block;
-}
-
-svg.bi.bi-plus-circle {
-  z-index: 2;
-  width: 20%;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  color: white;
-}
-
-.ingredient-list {
-  padding: 0px 25px;
-}
-
-.instructions {
-  padding: 25px;
-}
-</style>
-
 <template lang="pug">
-  .recipe
+  .recipe(v-if="recipe")
     .container.recipe-page-image
       .row
         img.recipe-page.img-fluid(src='https://picsum.photos/600/300?random=1', alt='...')
@@ -70,12 +45,12 @@ svg.bi.bi-plus-circle {
           table.table
             h2 Ingredients
             tbody
-                tr
-                  td(v-for="ingredient in recipe.ingredients")
+                tr(v-for="ingredient in recipe.ingredients")
+                  td {{ ingredient }}
 
         .container.instructions
           h2 Steps
-            p(v-for="instruction in recipe.instructions")
+          p(v-for="instruction, index in recipe.instructions") {{index + 1}}. {{ instruction }}
 
       .row
         form.personal-note
@@ -84,8 +59,41 @@ svg.bi.bi-plus-circle {
             textarea.form-control(type='text', placeholder='Add personal note about this recipe')
             button.btn.btn-primary.btn-sm.float-right(type="submit") Save
 
-    .tags.container.d-flex
-      .row.justify-content-sm-center
+    .container.d-flex.tags
+      .row
         .col-sm-auto
-          button.btn.btn-primary.btn-sm(v-for="tag in recipe.tags" type='button')
+          button.btn.btn-primary.btn-sm(v-for="tag in recipe.tags" type='button') {{ tag }}
 </template>
+
+<style lang="scss">
+.recipe-page-image {
+  position: relative;
+}
+
+img.recipe-page {
+  position: relative;
+  padding: 0;
+  display: block;
+}
+
+svg.bi.bi-plus-circle {
+  z-index: 2;
+  width: 20%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: white;
+}
+
+.recipe-info {
+  padding-top: 25px;
+}
+
+.ingredient-list {
+  padding: 0px 25px;
+}
+
+.instructions {
+  padding: 25px;
+}
+</style>
