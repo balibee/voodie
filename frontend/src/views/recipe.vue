@@ -1,10 +1,46 @@
 <script>
+import { mapActions } from 'vuex'
+
 export default {
-  name: 'Recipe'
+  name: 'Recipe',
+  props: ['recipe'],
+  async created() {
+    this.recipe = await this.fetchRecipe(this.$route.params.id)
+  },
+  methods: {
+    ...mapActions(['fetchRecipe'])
+  }
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.container.recipe-page-image {
+  position: relative;
+}
+
+img.recipe-page {
+  position: relative;
+  padding: 0;
+  display: block;
+}
+
+svg.bi.bi-plus-circle {
+  z-index: 2;
+  width: 20%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: white;
+}
+
+.ingredient-list {
+  padding: 0px 25px;
+}
+
+.instructions {
+  padding: 25px;
+}
+</style>
 
 <template lang="pug">
   .recipe
@@ -15,33 +51,31 @@ export default {
           path(fill-rule='evenodd', d='M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z')
           path(fill-rule='evenodd', d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z')
 
-    .container
+    .container.recipe-info
       .row
-        h2.text-center #{recipe.name}
+        h2.text-center {{recipe.name}}
         .row
           .col-3.text-center
-            p= 'Favorites: ' + recipe.favorites
+            p Favorites: {{recipe.favorites}}
           .col-3.text-center
-            p= 'Ratings: ' + recipe.totalRatings
+            p Ratings: {{recipe.totalRatings}}
           .col-3.text-center
-            p= 'Cook Time: ' + recipe.cookTime
+            p Cook Time: {{recipe.cookTime}}
           .col-3.text-center
-            p= 'Serves: ' + recipe.serves
-        p #{recipe.description}
+            p Serves: {{recipe.serves}}
+        p {{recipe.description}}
 
       .row
         .container.ingredient-list
           table.table
             h2 Ingredients
             tbody
-              each ingredient in recipe.ingredients
                 tr
-                  td=ingredient
+                  td(v-for="ingredient in recipe.ingredients")
 
         .container.instructions
           h2 Steps
-          each instruction, index in recipe.instructions
-            p= index + 1 + '. ' + instruction
+            p(v-for="instruction in recipe.instructions")
 
       .row
         form.personal-note
@@ -53,6 +87,5 @@ export default {
     .tags.container.d-flex
       .row.justify-content-sm-center
         .col-sm-auto
-          each tag in recipe.tags
-            button.btn.btn-primary.btn-sm(type='button')= tag
+          button.btn.btn-primary.btn-sm(v-for="tag in recipe.tags" type='button')
 </template>
