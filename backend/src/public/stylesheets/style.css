@@ -36,30 +36,3 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-
-.container.recipe-page-image {
-  position: relative;
-}
-
-img.recipe-page {
-  position: relative;
-  padding: 0;
-  display: block;
-}
-
-svg.bi.bi-plus-circle {
-  z-index: 2;
-  width: 20%;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  color: white;
-}
-
-.ingredient-list {
-  padding: 0px 25px;
-}
-
-.instructions {
-  padding: 25px;
-}
