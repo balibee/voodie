@@ -1,9 +1,8 @@
-$primary: #d35400;
-$secondary: #ecf0f1;
-$warning: #fdda4d;
-section {
-  padding-bottom: 3rem;
-  &:first-of-type {
-    padding-top: 3rem;
-  }
+// $primary: green;
+.container {
+  padding: 25px;
+}
+
+.row {
+  padding-bottom: 25px;
 }
