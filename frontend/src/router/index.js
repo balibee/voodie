@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/home.vue'
+import MealPlanner from '../views/mealplanner.vue'
+import Recipes from '../views/recipes.vue'
 
 Vue.use(VueRouter)
 
@@ -16,13 +18,13 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/mealplanner.vue')
+    component: MealPlanner
   },
-  {
-    path: '/inspiration/',
-    name: 'inspiration',
-    component: () => import('../views/inspiration.vue')
-  },
+  // {
+  //   path: '/inspiration/',
+  //   name: 'inspiration',
+  //   component: () => import('../views/inspiration.vue')
+  // },
   {
     path: '/recipes/:id',
     name: 'recipe detail',
@@ -31,7 +33,7 @@ const routes = [
   {
     path: '/recipes/',
     name: 'recipes',
-    component: () => import('../views/recipes.vue')
+    component: Recipes
   }
 ]
 
