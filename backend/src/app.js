@@ -3,6 +3,7 @@ const express = require('express')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
+
 require('./database-connection')
 
 const indexRouter = require('./routes/index')
@@ -11,6 +12,8 @@ const loginRouter = require('./routes/login')
 const signupRouter = require('./routes/signup')
 const homepageRouter = require('./routes/homepage')
 const recipesRouter = require('./routes/recipes')
+
+const Foodie = require('./models/foodie') // dummy user
 
 const app = express()
 
@@ -32,6 +35,12 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(express.static(path.join(__dirname, 'public')))
+
+app.use(async (req, res, next) => {
+  // dummy user
+  req.user = await Foodie.findOne({ name: 'jill' })
+  next()
+})
 
 // routers
 app.use('/api', indexRouter)
