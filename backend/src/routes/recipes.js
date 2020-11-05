@@ -40,7 +40,20 @@ router.get('/:recipeId', async (req, res) => {
   if (recipe) {
     return res.send(recipe)
   }
-  res.sendStatus(404)
+  return res.sendStatus(404)
+})
+
+// POST a recipe
+router.post('/', async (req, res) => {
+  const recipe = await Recipe.create({
+    name: req.body.name,
+    description: req.body.description,
+    ingredients: req.body.ingredients,
+    instructions: req.body.instructions,
+    cookTime: req.body.cookTime,
+    serves: req.body.serves,
+  })
+  res.send(recipe)
 })
 
 module.exports = router
