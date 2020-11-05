@@ -32,6 +32,7 @@ const recipeSchema = new mongoose.Schema({
   recipeRating: 0,
   favorites: { type: Number, default: 0 },
   tags: [],
+  personalNote: { type: String },
 })
 
 class Recipe {
