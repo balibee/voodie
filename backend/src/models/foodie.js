@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const autopopulate = require('mongoose-autopopulate')
-require('./recipe')
+const Recipe = require('./recipe')
 
 const foodieSchema = new mongoose.Schema({
   name: {
@@ -89,8 +89,10 @@ class Foodie {
   }
 
   async createRecipe(recipe) {
-    this.recipes.push(recipe)
+    const createdRecipe = await Recipe.create(recipe)
+    this.recipes.push(createdRecipe)
     await this.save()
+    return createdRecipe
   }
 
   deleteRecipe(recipe) {
