@@ -17,7 +17,7 @@ export default {
           li.nav-item
             router-link.nav-link(to='/mealplanner') Meal Planner
           li.nav-item
-            router-link.nav-link(to='/inspiration') Inspiration
+            router-link.nav-link(to='/recipes') Recipes
           li.nav-item
             router-link.nav-link(to='/profile') Profile
         router-link.btn.btn-outline-success(to="/login" role="button") Logout
