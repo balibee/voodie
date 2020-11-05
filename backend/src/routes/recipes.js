@@ -17,14 +17,8 @@ router.get('/', async (req, res) => {
   res.send(await Recipe.find(query))
 })
 
-/* GET all recipes page. */
-router.get('/', function (req, res) {
-  res.render('recipes', { title: 'Recipes' })
-})
-
 // Initialize recipes
 router.get('/initialize', async (req, res) => {
-  // initialize recipes.json
   for (let i = 0; i < recipes.length; i++) {
     // eslint-disable-next-line
     await Recipe.create(recipes[i])
