@@ -67,25 +67,25 @@ class Foodie {
     return `Please choose a number between 1 and 5.`
   }
 
-  async favorite(recipe) {
-    if (this.favoritedRecipes.includes(recipe)) return
+  async toggleFavorite(recipe) {
+    // eslint-disable-next-line no-underscore-dangle
+    if (recipe.favoritedBy.includes(this._id)) {
+      this.favoritedRecipes.splice(this.favoritedRecipes.indexOf(recipe), 1)
+      recipe.favoritedBy.splice(recipe.favoritedBy.indexOf(recipe), 1)
 
-    recipe.favorites++
-    this.favoritedRecipes.push(recipe)
-    await this.save()
-    await recipe.save()
-  }
+      await recipe.save()
+      await this.save()
 
-  async unfavorite(recipe) {
-    if (!this.favoritedRecipes.includes(recipe)) return
-
-    if (recipe.favorites > 0) {
-      recipe.favorites--
+      return recipe
     }
 
-    this.favoritedRecipes.splice(this.favoritedRecipes.indexOf(recipe), 1)
-    await this.save()
+    this.favoritedRecipes.push(recipe)
+    recipe.favoritedBy.push(this)
+
     await recipe.save()
+    await this.save()
+
+    return recipe
   }
 
   async createRecipe(recipe) {
