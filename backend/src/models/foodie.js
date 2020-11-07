@@ -90,7 +90,9 @@ class Foodie {
   async createRecipe(recipe) {
     const createdRecipe = await Recipe.create(recipe)
     this.recipes.push(createdRecipe)
+
     await this.save()
+
     return createdRecipe
   }
 
