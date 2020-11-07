@@ -51,17 +51,28 @@ router.get('/:recipeId', async (req, res) => {
   return res.sendStatus(404)
 })
 
-// POST a recipe
-router.post('/', async (req, res) => {
-  const recipe = await Recipe.create({
-    name: req.body.name,
-    description: req.body.description,
-    ingredients: req.body.ingredients,
-    instructions: req.body.instructions,
-    cookTime: req.body.cookTime,
-    serves: req.body.serves,
-  })
-  res.send(recipe)
+// PATCH favorite property of recipe
+router.post('/:recipeId/favorite', async (req, res) => {
+  const recipe = await Recipe.findById(req.params.recipeId)
+
+  const updatedRecipe = await req.user.toggleFavorite(recipe)
+
+  return res.send(updatedRecipe)
 })
+
+// GET individual recipe favorites
+// router.get('/:recipeId/favorites', async (req, res) => {
+//   const query = { foodie: req.foodie }
+
+//   if (req.query.name) {
+//     query.name = req.query.name
+//   }
+
+//   if (req.query.favorited) {
+//     query.favorited = req.query.favorited
+//   }
+
+//   res.send(await Recipe.find(query))
+// })
 
 module.exports = router
