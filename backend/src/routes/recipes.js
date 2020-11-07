@@ -17,6 +17,20 @@ router.get('/', async (req, res) => {
   res.send(await Recipe.find(query))
 })
 
+// POST a recipe
+router.post('/', async (req, res) => {
+  const recipe = await Recipe.create({
+    name: req.body.name,
+    description: req.body.description,
+    tags: req.body.tags,
+    ingredients: req.body.ingredients,
+    instructions: req.body.instructions,
+    cookTime: req.body.cookTime,
+    serves: req.body.serves,
+  })
+  res.send(recipe)
+})
+
 // Initialize recipes
 router.get('/initialize', async (req, res) => {
   for (let i = 0; i < recipes.length; i++) {
