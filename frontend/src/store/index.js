@@ -5,7 +5,9 @@ import axios from 'axios'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {},
+  state: {
+    userId: '5fa573db69e59702a61a2d35'
+  },
   mutations: {},
   actions: {
     async fetchRecipe(store, id) {
