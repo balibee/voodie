@@ -12,21 +12,28 @@ export default new Vuex.Store({
   actions: {
     async fetchRecipe(store, id) {
       const recipeRequest = await axios.get(`/api/recipes/${id}`)
+
       return recipeRequest.data
     },
+
     async fetchRecipes() {
       const recipesRequest = await axios.get(`/api/recipes`)
+
       return recipesRequest.data
     },
+
     async createRecipe(store, recipe) {
       await axios.post(`/api/recipes`, {
         name: recipe.name,
         description: recipe.description,
+        tags: recipe.tags.split(', '),
         ingredients: recipe.ingredients.split('\n'),
         instructions: recipe.instructions.split('\n'),
         cookTime: recipe.cookTime,
         serves: recipe.serves
       })
+    },
+
     }
   },
   modules: {}
