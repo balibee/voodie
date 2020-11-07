@@ -5,7 +5,7 @@ const router = express.Router()
 const Recipe = require('../models/recipe')
 const recipes = require('../models/recipes.json')
 
-// Get all recipes in database
+// GET all recipes in database
 
 router.get('/', async (req, res) => {
   const query = {}
@@ -41,7 +41,7 @@ router.get('/initialize', async (req, res) => {
   res.send(200)
 })
 
-// Get individual recipe page
+// GET individual recipe page
 router.get('/:recipeId', async (req, res) => {
   const recipe = await Recipe.findById(req.params.recipeId)
 
