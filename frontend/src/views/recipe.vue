@@ -1,18 +1,41 @@
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 
 export default {
   name: 'Recipe',
+  components: {},
+
   async created() {
     this.recipe = await this.fetchRecipe(this.$route.params.id)
   },
   data() {
     return {
-      recipe: null
+      recipe: {}
+    }
+  },
+  computed: {
+    ...mapState(['userId']),
+
+    favoriteCounter() {
+      if (!this.recipe.favoritedBy) return 0
+
+      return this.recipe.favoritedBy.length
+    },
+
+    favorited() {
+      if (!this.recipe.favoritedBy) return false
+
+      return this.recipe.favoritedBy.includes(this.userId)
     }
   },
   methods: {
-    ...mapActions(['fetchRecipe'])
+    ...mapActions(['fetchRecipe', 'toggleFavorited']),
+
+    async handleFavorite() {
+      const updatedRecipe = await this.toggleFavorited(this.$route.params.id)
+
+      this.recipe.favoritedBy = updatedRecipe.favoritedBy
+    }
   }
 }
 </script>
@@ -30,7 +53,8 @@ export default {
         h2.text-center.title {{recipe.name}}
         .row
           .col-3.text-center
-            p Favorites: {{recipe.favorites}}
+            button.btn.btn-outline-dark.btn-sm.favoriteButton(@click='handleFavorite') {{ favorited ? 'Unfavorite' : 'Favorite' }}
+            p.favoriteCounter {{ favoriteCounter }}
           .col-3.text-center
             p Ratings: {{recipe.totalRatings}}
           .col-3.text-center
@@ -125,5 +149,14 @@ svg.bi.bi-plus-circle {
   padding: 0px;
   max-height: 60px;
   vertical-align: middle;
+}
+
+.favoriteButton {
+  background-color: #ffcccb;
+}
+
+.favoriteCounter {
+  display: inline-block;
+  padding-left: 5px;
 }
 </style>
