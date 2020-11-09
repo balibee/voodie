@@ -31,7 +31,12 @@ const recipeSchema = new mongoose.Schema({
     required: true,
   },
   totalRatings: { type: Number, default: 0 },
-  reviews: [],
+  reviews: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Review',
+    },
+  ],
   starRatings: [[0], [0], [0], [0], [0]],
   recipeRating: 0,
   favoritedBy: [
