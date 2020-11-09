@@ -10,9 +10,9 @@ export default {
     .col-2
       p {{ review.author }}
       //- img.rounded-circle.img-thumbnail.profile(src='https://i.pravatar.cc/300')
-    .col-2
-      p {{ review.text }}
     .col-8
+      p {{ review.text }}
+    .col-2
       p {{ review.rating }}
 </template>
 
