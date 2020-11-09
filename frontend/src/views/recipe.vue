@@ -1,17 +1,24 @@
 <script>
+import review from '@/components/review.vue'
+
 import { mapActions, mapState } from 'vuex'
 
 export default {
   name: 'Recipe',
-  components: {},
-
-  async created() {
-    this.recipe = await this.fetchRecipe(this.$route.params.id)
+  components: {
+    review
   },
+
   data() {
     return {
-      recipe: {}
+      recipe: {},
+      review: {},
+      reviews: []
     }
+  },
+  async created() {
+    this.recipe = await this.fetchRecipe(this.$route.params.id)
+    this.reviews = await this.fetchReviews(this.$route.params.id)
   },
   computed: {
     ...mapState(['userId']),
@@ -28,8 +35,9 @@ export default {
       return this.recipe.favoritedBy.includes(this.userId)
     }
   },
+
   methods: {
-    ...mapActions(['fetchRecipe', 'toggleFavorited']),
+    ...mapActions(['fetchRecipe', 'toggleFavorited', 'createReview', 'fetchReviews']),
 
     async handleFavorite() {
       const updatedRecipe = await this.toggleFavorited(this.$route.params.id)
@@ -91,21 +99,19 @@ export default {
             h2 Reviews
           .col-6.text-right
             p Ratings: {{recipe.totalRatings}}
-          .row.review
-            .col-2
-              img.rounded-circle.img-thumbnail.profile(src='https://i.pravatar.cc/300')
-            .col-10
-              p I made this for a potluck and got rave comments.
-          .row.review
-            .col-2
-              img.rounded-circle.img-thumbnail.profile(src='https://i.pravatar.cc/300')
-            .col-10
-              p I made this for a potluck and got rave comments.
+          review
+          div(v-for='review in reviews')
+
           .row-review
-            form.review-recipe
+            form.review-recipe(@submit.prevent='createReview(review)')
               .form-group
-                textarea.form-control(type='text', placeholder='Write a review!')
-                button.btn.btn-primary Submit
+                label(for='review') Review
+                textarea.form-control(v-model='review.review' name='review' type='text', placeholder='Write a review!')
+              .form-group.col-2
+                label.sr-only(for='rating') Rating
+                input.form-control#rating(v-model.number='review.rating' type='number' name='rating' placeholder='1-5')
+              .form-group
+                button.btn.btn-primary(type='submit') Submit
         br
 
 </template>
@@ -138,17 +144,6 @@ svg.bi.bi-plus-circle {
 
 .tags {
   margin: 1px;
-}
-
-.review {
-  align-items: center;
-  padding-bottom: 10px;
-}
-
-.profile {
-  padding: 0px;
-  max-height: 60px;
-  vertical-align: middle;
 }
 
 .favoriteButton {
