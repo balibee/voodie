@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const autopopulate = require('mongoose-autopopulate')
 const Recipe = require('./recipe')
+const Review = require('./review')
 
 const foodieSchema = new mongoose.Schema({
   name: {
@@ -50,10 +51,11 @@ const foodieSchema = new mongoose.Schema({
 })
 
 class Foodie {
-  rateRecipe(recipe, rating, review) {
+  async review(recipe, rating, review) {
+    const createdReview = await Review.create({ foodieId: this, recipe, rating, review })
+
     if (rating > 0 && rating <= 5) {
-      recipe.reviews.push([this.name, rating, review])
-      console.log(`${this.name} rates ${recipe.name} ${rating} stars!`)
+      recipe.reviews.push(createdReview)
 
       for (let i = 1; i <= 5; i++) {
         if (rating === i) {
@@ -63,7 +65,10 @@ class Foodie {
 
       recipe.totalRatings++
     }
-    return `Please choose a number between 1 and 5.`
+
+    await this.save()
+
+    return createdReview
   }
 
   async toggleFavorite(recipe) {
