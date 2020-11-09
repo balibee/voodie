@@ -104,10 +104,10 @@ export default {
           review(v-for='review in reviews' :review='review')
 
           .row-review
-            form.review-recipe(@submit.prevent='createReview(review)')
+            form.review-recipe(@submit.prevent='createReview({recipeId: recipe._id, review})')
               .form-group
                 label(for='review') Review
-                textarea.form-control#review(v-model='review.text' type='text' name='review' placeholder='Write a review!')
+                textarea.form-control#review(v-model='review.text' type='text' name='text' placeholder='Write a review!')
               .form-group.col-2
                 label.sr-only(for='rating') Rating
                 input.form-control#rating(v-model.number='review.rating' type='number' name='rating' placeholder='0-5')
