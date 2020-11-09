@@ -39,7 +39,7 @@ export default new Vuex.Store({
       return toggleFavorited.data
     },
 
-    async createReview(store, recipeId, review) {
+    async createReview(store, { recipeId, review }) {
       await axios.post(`/api/recipes/${recipeId}/reviews`, {
         text: review.text,
         rating: review.rating
