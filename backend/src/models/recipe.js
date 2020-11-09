@@ -38,7 +38,7 @@ const recipeSchema = new mongoose.Schema({
       rating: Number,
     },
   ],
-  starRatings: [[0], [0], [0], [0], [0]],
+  starRatings: { type: Object, default: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 } },
   favoritedBy: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -51,26 +51,27 @@ const recipeSchema = new mongoose.Schema({
 
 class Recipe {
   async addReview(review) {
+    console.log(review)
     if (review.rating < 0 && review.rating > 5) {
       throw Error
     }
 
     this.reviews.push(review)
-
+    console.log(this.starRatings)
     this.starRatings[review.rating]++
     this.totalRatings++
-
+    console.log(this.starRatings)
     this.rating =
-      (5 * this.starRatings[4] +
-        4 * this.starRatings[3] +
-        3 * this.starRatings[2] +
-        2 * this.starRatings[1] +
-        1 * this.starRatings[0]) /
+      (5 * this.starRatings[5] +
+        4 * this.starRatings[4] +
+        3 * this.starRatings[3] +
+        2 * this.starRatings[2] +
+        1 * this.starRatings[1]) /
       this.totalRatings.toFixed(1)
 
     await this.save()
 
-    return review
+    return this
   }
 }
 
