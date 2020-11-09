@@ -68,24 +68,9 @@ class Recipe {
         1 * this.starRatings[0]) /
       this.totalRatings.toFixed(1)
 
-  printRecipe() {
-    return `Recipe printed successfully!
-${this.name}
-Rating: ${this.rating} out of 5.0 stars
-Cook Time: ${this.cookTime} mins
-Serves: ${this.serves}
-Ingredients: ${this.ingredients.join(', ')}
-Instructions: ${this.instructions}`
-  }
+    await this.save()
 
-  get allReviews() {
-    console.log(`Reviews for ${this.name}`)
-
-    if (this.reviews.length === 0) {
-      return `There are no reviews yet.`
-    }
-
-    return this.reviews.map(review => `${review[1]} stars ${review[2]} -${review[0]}`).join('\n')
+    return review
   }
 }
 
