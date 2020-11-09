@@ -10,7 +10,6 @@ export default {
     }
   },
   async created() {
-    console.log('created')
     this.recipes = await this.fetchRecipes()
   },
   methods: {
