@@ -16,10 +16,12 @@ export default {
       reviews: []
     }
   },
+
   async created() {
     this.recipe = await this.fetchRecipe(this.$route.params.id)
     this.reviews = await this.fetchReviews(this.$route.params.id)
   },
+
   computed: {
     ...mapState(['userId']),
 
@@ -41,7 +43,6 @@ export default {
 
     async handleFavorite() {
       const updatedRecipe = await this.toggleFavorited(this.$route.params.id)
-
       this.recipe.favoritedBy = updatedRecipe.favoritedBy
     }
   }
@@ -58,19 +59,19 @@ export default {
           path(fill-rule='evenodd', d='M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z')
 
       .row.recipe-info
-        h2.text-center.title {{recipe.name}}
+        h2.text-center.title {{ recipe.name }}
         .row
           .col-3.text-center
             button.btn.btn-outline-dark.btn-sm.favoriteButton(@click='handleFavorite') {{ favorited ? 'Unfavorite' : 'Favorite' }}
             p.favoriteCounter {{ favoriteCounter }}
           .col-3.text-center
-            p Ratings: {{recipe.totalRatings}}
+            p Ratings: {{ recipe.totalRatings }}
           .col-3.text-center
-            p Cook Time: {{recipe.cookTime}}
+            p Cook Time: {{ recipe.cookTime }}
           .col-3.text-center
-            p Serves: {{recipe.serves}}
+            p Serves: {{ recipe.serves }}
         .row
-          p {{recipe.description}}
+          p {{ recipe.description }}
 
         .row.ingredient-list
           h2 Ingredients
@@ -81,7 +82,7 @@ export default {
 
         .row.instructions
           h2 Steps
-          p(v-for="instruction, index in recipe.instructions") {{index + 1}}. {{ instruction }}
+          p(v-for="instruction, index in recipe.instructions") {{ index + 1 }}. {{ instruction }}
 
         .row.personal-note
           form
@@ -98,21 +99,20 @@ export default {
           .col-6
             h2 Reviews
           .col-6.text-right
-            p Ratings: {{recipe.totalRatings}}
-          review
-          div(v-for='review in reviews')
+            p Ratings: {{ recipe.totalRatings }}
+
+          review(v-for='review in reviews' :review='review')
 
           .row-review
             form.review-recipe(@submit.prevent='createReview(review)')
               .form-group
                 label(for='review') Review
-                textarea.form-control(v-model='review.review' name='review' type='text', placeholder='Write a review!')
+                textarea.form-control#review(v-model='review.text' type='text' name='review' placeholder='Write a review!')
               .form-group.col-2
                 label.sr-only(for='rating') Rating
-                input.form-control#rating(v-model.number='review.rating' type='number' name='rating' placeholder='1-5')
+                input.form-control#rating(v-model.number='review.rating' type='number' name='rating' placeholder='0-5')
               .form-group
                 button.btn.btn-primary(type='submit') Submit
-        br
 
 </template>
 
