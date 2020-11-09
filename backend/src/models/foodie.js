@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 const autopopulate = require('mongoose-autopopulate')
 const Recipe = require('./recipe')
-const Review = require('./review')
 
 const foodieSchema = new mongoose.Schema({
   name: {
@@ -64,7 +63,8 @@ class Foodie {
     }
 
     this.favoritedRecipes.push(recipe)
-    recipe.favoritedBy.push(this)
+    // eslint-disable-next-line no-underscore-dangle
+    recipe.favoritedBy.push(this._id)
 
     await recipe.save()
     await this.save()
