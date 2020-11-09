@@ -51,26 +51,6 @@ const foodieSchema = new mongoose.Schema({
 })
 
 class Foodie {
-  async review(recipe, rating, review) {
-    const createdReview = await Review.create({ foodieId: this, recipe, rating, review })
-
-    if (rating > 0 && rating <= 5) {
-      recipe.reviews.push(createdReview)
-
-      for (let i = 1; i <= 5; i++) {
-        if (rating === i) {
-          recipe.starRatings[i - 1]++
-        }
-      }
-
-      recipe.totalRatings++
-    }
-
-    await this.save()
-
-    return createdReview
-  }
-
   async toggleFavorite(recipe) {
     // eslint-disable-next-line no-underscore-dangle
     if (recipe.favoritedBy.includes(this._id)) {
