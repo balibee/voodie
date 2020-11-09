@@ -40,7 +40,8 @@ export default new Vuex.Store({
     },
 
     async fetchFavoritedRecipes() {
-      const favoritedRecipesRequest = await axios.get(`/api/recipes/`)
+      const favoritedRecipesRequest = await axios.get(`/api/recipes`)
+
       return favoritedRecipesRequest.data
     }
   },
