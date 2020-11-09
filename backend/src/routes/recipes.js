@@ -63,7 +63,7 @@ router.post('/:recipeId/favorite', async (req, res) => {
 router.post('/:recipeId/reviews', async (req, res) => {
   const recipe = await Recipe.findById(req.params.recipeId)
 
-  const review = { author: req.user, text: req.body.text, rating: req.body.rating }
+  const review = { author: req.user.name, text: req.body.text, rating: req.body.rating }
 
   const updatedRecipe = await recipe.addReview(review)
 
@@ -72,13 +72,9 @@ router.post('/:recipeId/reviews', async (req, res) => {
 
 // GET all reviews of recipe
 router.get('/:recipeId/reviews', async (req, res) => {
-  const query = {}
+  const recipe = await Recipe.findById(req.params.recipeId)
 
-  if (req.query.name) {
-    query.name = req.query.name
-  }
-
-  res.send(await Recipe.find(query))
+  res.send(recipe.reviews)
 })
 
 // GET individual recipe favorites
