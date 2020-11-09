@@ -4,9 +4,9 @@ const router = express.Router()
 
 const Recipe = require('../models/recipe')
 const recipes = require('../models/recipes.json')
+const Review = require('../models/review')
 
 // GET all recipes in database
-
 router.get('/', async (req, res) => {
   const query = {}
 
@@ -51,13 +51,35 @@ router.get('/:recipeId', async (req, res) => {
   return res.sendStatus(404)
 })
 
-// PATCH favorite property of recipe
+// POST favorite property of recipe
 router.post('/:recipeId/favorite', async (req, res) => {
   const recipe = await Recipe.findById(req.params.recipeId)
 
   const updatedRecipe = await req.user.toggleFavorite(recipe)
 
   return res.send(updatedRecipe)
+})
+
+// POST review of recipe
+router.post('/:recipeId', async (req, res) => {
+  const review = await Review.create({
+    foodieId: req.user,
+    recipeId: req.params.recipeId,
+    rating: req.body.rating,
+    review: req.body.review,
+  })
+  res.send(review)
+})
+
+// GET all reviews of recipe
+router.get('/:recipeId/reviews', async (req, res) => {
+  const query = {}
+
+  if (req.query.name) {
+    query.name = req.query.name
+  }
+
+  res.send(await Review.find(query))
 })
 
 // GET individual recipe favorites
