@@ -4,7 +4,6 @@ const router = express.Router()
 
 const Recipe = require('../models/recipe')
 const recipes = require('../models/recipes.json')
-const Review = require('../models/review')
 
 // GET all recipes in database
 router.get('/', async (req, res) => {
@@ -61,14 +60,14 @@ router.post('/:recipeId/favorite', async (req, res) => {
 })
 
 // POST review of recipe
-router.post('/:recipeId', async (req, res) => {
-  const review = await Review.create({
-    foodieId: req.user,
-    recipeId: req.params.recipeId,
-    rating: req.body.rating,
-    review: req.body.review,
-  })
-  res.send(review)
+router.post('/:recipeId/reviews', async (req, res) => {
+  const recipe = await Recipe.findById(req.params.recipeId)
+
+  const review = { author: req.user, text: req.body.text, rating: req.body.rating }
+
+  const updatedRecipe = await recipe.addReview(review)
+
+  res.send(updatedRecipe)
 })
 
 // GET all reviews of recipe
@@ -79,7 +78,7 @@ router.get('/:recipeId/reviews', async (req, res) => {
     query.name = req.query.name
   }
 
-  res.send(await Review.find(query))
+  res.send(await Recipe.find(query))
 })
 
 // GET individual recipe favorites
