@@ -8,12 +8,12 @@ export default {
 <template lang="pug">
   .row.review
     .col-2
-      p {{ review.foodieId }}
+      p {{ review.author }}
       //- img.rounded-circle.img-thumbnail.profile(src='https://i.pravatar.cc/300')
     .col-2
-      p {{ review.rating }}
+      p {{ review.text }}
     .col-8
-      p {{ review.review}}
+      p {{ review.rating }}
 </template>
 
 <style lang="scss">
