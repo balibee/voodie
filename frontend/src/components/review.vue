@@ -6,7 +6,7 @@ export default {
 </script>
 
 <template lang="pug">
-  .row.review
+  .row.review.text-center
     .col-2
       p {{ review.author }}
       //- img.rounded-circle.img-thumbnail.profile(src='https://i.pravatar.cc/300')
