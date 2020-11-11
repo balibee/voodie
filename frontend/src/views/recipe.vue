@@ -56,7 +56,8 @@ export default {
         img.recipe-page.img-fluid(src='https://picsum.photos/600/300?random=1', alt='...')
 
       .row.recipe-info
-        h2.text-center.title {{ recipe.name }}
+        .container
+          h2.text-center.title {{ recipe.name }}
         .row
           .col-3.text-center
             button.btn.btn-outline-dark.btn-sm.favoriteButton(@click='handleFavorite') {{ favorited ? 'Unfavorite' : 'Favorite' }}
