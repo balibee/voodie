@@ -12,6 +12,7 @@ const loginRouter = require('./routes/login')
 const signupRouter = require('./routes/signup')
 const homepageRouter = require('./routes/homepage')
 const recipesRouter = require('./routes/recipes')
+const mealPlannerRouter = require('./routes/mealplanner')
 
 const Foodie = require('./models/foodie') // dummy user
 
@@ -49,6 +50,7 @@ app.use('/api/login', loginRouter)
 app.use('/api/signup', signupRouter)
 app.use('/api/homepage', homepageRouter)
 app.use('/api/recipes', recipesRouter)
+app.use('/api/mealplanner', mealPlannerRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
