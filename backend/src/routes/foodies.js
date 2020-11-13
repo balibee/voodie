@@ -15,14 +15,14 @@ router.get('/', async (req, res) => {
   res.send(await Foodie.find(query))
 })
 
-router.get('/initialize', async (req, res) => {
-  // create foodies
-  const jill = await Foodie.create({ name: 'jill', email: 'jill@coyotiv.com', password: 'mypassword' })
+// router.get('/initialize', async (req, res) => {
+//   // create foodies
+//   const jill = await Foodie.create({ name: 'jill', email: 'jill@coyotiv.com', password: 'mypassword' })
 
-  jill.save()
+//   jill.save()
 
-  res.send(200)
-})
+//   res.send(200)
+// })
 
 // Foodie page
 router.get('/:userId', async (req, res) => {
