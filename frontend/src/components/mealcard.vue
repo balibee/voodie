@@ -24,7 +24,7 @@ export default {
 <template lang="pug">
   .daily-recipe-card
     .card.text-white
-      img.card-img(src=`https://spoonacular.com/recipeImages/${id}-240x150.${imageType}`)
+      img.card-img(:src='`https://spoonacular.com/recipeImages/${id}-240x150.${imageType}`')
       .card-img-overlay.d-flex.flex-row.justify-content-between.align-items-end
         .card-body.d-flex.justify-content-between
           h5.card-title.col-sm-10 {{ title }}
