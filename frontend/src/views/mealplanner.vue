@@ -12,12 +12,11 @@ export default {
       meals: null
     }
   },
-  mounted() {
-    axios
-      .get(
-        'https://api.spoonacular.com/mealplanner/generate?apiKey=cdd592f2f3684fbba38cc76c8eb9aa63&diet=vegan&timeFrame=day&exclude=shellfish,dairy'
-      )
-      .then(response => (this.meals = response.data.meals))
+  async mounted() {
+    const response = await axios.get(
+      'https://api.spoonacular.com/mealplanner/generate?apiKey=cdd592f2f3684fbba38cc76c8eb9aa63&diet=vegan&timeFrame=day&exclude=shellfish,dairy,fish,clam'
+    )
+    this.meals = response.data.meals
   }
 }
 </script>
