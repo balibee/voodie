@@ -1,5 +1,6 @@
 <script>
 import { mapActions } from 'vuex'
+
 export default {
   name: 'App',
   methods: {
@@ -12,11 +13,6 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-@import '@/assets/theme.scss';
-@import 'bootstrap/scss/bootstrap.scss';
-</style>
 
 <template lang="pug">
   #app
@@ -37,3 +33,8 @@ export default {
             a.btn.btn-outline-success(@click='doLogout' href="#") Logout
     router-view
 </template>
+
+<style lang="scss">
+@import '@/assets/theme.scss';
+@import 'bootstrap/scss/bootstrap.scss';
+</style>
