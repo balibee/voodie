@@ -4,12 +4,43 @@ import axios from 'axios'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+const mutations = {
+  SET_FOODIE: 'set foodie'
+}
+
+const store = new Vuex.Store({
   state: {
-    userId: '5fa573db69e59702a61a2d35'
+    foodie: null
   },
-  mutations: {},
+  mutations: {
+    [mutations.SET_FOODIE](state, foodie) {
+      state.foodie = foodie
+    }
+  },
   actions: {
+    async fetchSession({ commit }) {
+      const foodie = await axios.get('/api/account/session')
+      commit(mutations.SET_FOODIE, foodie.data || null)
+    },
+
+    async login({ commit }, credentials) {
+      try {
+        const foodie = await axios.post('/api/account/session', credentials)
+        commit(mutations.SET_FOODIE, foodie.data)
+      } catch (e) {
+        throw e
+      }
+    },
+
+    async register(store, foodie) {
+      return axios.post('/api/account', foodie)
+    },
+
+    async logout({ commit }) {
+      await axios.delete('/api/account/session')
+      commit(mutations.SET_FOODIE, null)
+    },
+
     async fetchRecipe(store, id) {
       const recipeRequest = await axios.get(`/api/recipes/${id}`)
 
@@ -51,12 +82,10 @@ export default new Vuex.Store({
 
       return reviewsRequest.data
     }
-
-    // async fetchFavoritedRecipes() {
-    //   const favoritedRecipesRequest = await axios.get(`/api/recipes`)
-
-    //   return favoritedRecipesRequest.data
-    // }
-  },
-  modules: {}
+  }
 })
+
+export default async function init() {
+  await store.dispatch('fetchSession')
+  return store
+}
