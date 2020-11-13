@@ -23,7 +23,7 @@ export default {
   },
 
   computed: {
-    ...mapState(['userId']),
+    ...mapState(['foodie']),
 
     favoriteCounter() {
       if (!this.recipe.favoritedBy) return 0
@@ -34,7 +34,7 @@ export default {
     favorited() {
       if (!this.recipe.favoritedBy) return false
 
-      return this.recipe.favoritedBy.includes(this.userId)
+      return this.recipe.favoritedBy.includes(this.foodie)
     }
   },
 
