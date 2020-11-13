@@ -13,13 +13,9 @@ const mongooseConnection = require('./database-connection')
 
 const indexRouter = require('./routes/index')
 const foodiesRouter = require('./routes/foodies')
-const loginRouter = require('./routes/login')
-const signupRouter = require('./routes/signup')
-const homepageRouter = require('./routes/homepage')
 const recipesRouter = require('./routes/recipes')
 const mealPlannerRouter = require('./routes/mealplanner')
-
-const Foodie = require('./models/foodie') // dummy user
+const accountRouter = require('./routes/account')
 
 const app = express()
 
@@ -70,11 +66,9 @@ app.use(express.static(path.join(__dirname, 'public')))
 // })
 
 // routers
-app.use('/api', indexRouter)
+app.use('/api/', indexRouter)
+app.use('/api/account', accountRouter)
 app.use('/api/foodies', foodiesRouter)
-app.use('/api/login', loginRouter)
-app.use('/api/signup', signupRouter)
-app.use('/api/homepage', homepageRouter)
 app.use('/api/recipes', recipesRouter)
 app.use('/api/mealplanner', mealPlannerRouter)
 
