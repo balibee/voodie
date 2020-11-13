@@ -3,8 +3,13 @@ const express = require('express')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
+const session = require('express-session')
+const MongoStore = require('connect-mongo')(session)
+const passport = require('passport')
 
-require('./database-connection')
+const Foodie = require('./models/foodie')
+
+const mongooseConnection = require('./database-connection')
 
 const indexRouter = require('./routes/index')
 const foodiesRouter = require('./routes/foodies')
@@ -35,13 +40,34 @@ app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
+
+app.use(
+  session({
+    secret: ['thisisasupersecuresecretsecret', 'thisisanothersupernotsosecretsecret'],
+    store: new MongoStore({ mongooseConnection, stringify: false }),
+    cookie: {
+      maxAge: 30 + 24 * 60 * 1000,
+      path: '/api',
+    },
+  })
+)
+
+// Configure passport middleware
+app.use(passport.initialize())
+app.use(passport.session())
+
+passport.use(Foodie.createStrategy())
+
+passport.serializeUser(Foodie.serializeUser())
+passport.deserializeUser(Foodie.deserializeUser())
+
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.use(async (req, res, next) => {
-  // dummy user
-  req.user = await Foodie.findOne({ name: 'jill' })
-  next()
-})
+// app.use('api', (req, res, next) => {
+//   req.session.viewCount = req.session.viewCount || 0
+//   req.session.viewCount++
+//   next()
+// })
 
 // routers
 app.use('/api', indexRouter)
