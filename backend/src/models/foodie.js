@@ -1,18 +1,10 @@
 const mongoose = require('mongoose')
 const autopopulate = require('mongoose-autopopulate')
+const passportLocalMongoose = require('passport-local-mongoose')
 const Recipe = require('./recipe')
 
 const foodieSchema = new mongoose.Schema({
   name: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: String,
-    unique: true,
-    required: true,
-  },
-  password: {
     type: String,
     required: true,
   },
@@ -97,6 +89,9 @@ class Foodie {
 
 foodieSchema.loadClass(Foodie)
 foodieSchema.plugin(autopopulate)
+foodieSchema.plugin(passportLocalMongoose, {
+  usernameField: 'email',
+})
 module.exports = mongoose.model('Foodie', foodieSchema)
 
 // module.exports = Foodie
