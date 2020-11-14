@@ -3,6 +3,9 @@ import { mapActions } from 'vuex'
 
 export default {
   name: 'App',
+  computed: {
+    ...mapState(['foodie'])
+  },
   methods: {
     ...mapActions(['logout']),
 
