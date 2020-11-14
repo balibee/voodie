@@ -13,7 +13,7 @@ export default {
       day: new Date().getDate()
     }
   },
-  computer: {
+  computed: {
     ...mapState(['foodie'])
   }
 }
