@@ -6,7 +6,7 @@ const Foodie = require('../models/foodie')
 const router = express.Router()
 
 router.get('/session', (req, res) => {
-  res.send(req.foodie) // this was different in the notes (req.session)
+  res.send(req.user)
 })
 
 router.post('/', async (req, res, next) => {
@@ -21,7 +21,7 @@ router.post('/', async (req, res, next) => {
 })
 
 router.post('/session', passport.authenticate('local', { failWithError: true }), async (req, res) => {
-  res.send(req.foodie)
+  res.send(req.user)
 })
 
 router.delete('/session', async (req, res, next) => {
