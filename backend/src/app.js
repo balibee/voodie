@@ -7,8 +7,6 @@ const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 const passport = require('passport')
 
-const Foodie = require('./models/foodie')
-
 const mongooseConnection = require('./database-connection')
 
 const indexRouter = require('./routes/index')
@@ -16,6 +14,7 @@ const foodiesRouter = require('./routes/foodies')
 const recipesRouter = require('./routes/recipes')
 const mealPlannerRouter = require('./routes/mealplanner')
 const accountRouter = require('./routes/account')
+const Foodie = require('./models/foodie')
 
 const app = express()
 
