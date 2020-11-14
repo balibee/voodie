@@ -46,7 +46,7 @@ export default function init(store) {
       },
       {
         path: '/register',
-        name: 'register',
+        name: 'Register',
         component: Register,
         beforeEnter(to, from, next) {
           if (store.state.foodie) return next('/profile')
@@ -55,7 +55,7 @@ export default function init(store) {
       },
       {
         path: '/login',
-        name: 'login',
+        name: 'Login',
         component: Login,
         beforeEnter(to, from, next) {
           if (store.state.foodie) return next('/profile')
@@ -64,7 +64,7 @@ export default function init(store) {
       },
       {
         path: '/profile',
-        name: 'profile',
+        name: 'Profile',
         component: Profile,
         beforeEnter(to, from, next) {
           if (!store.state.foodie) return next('/login')
