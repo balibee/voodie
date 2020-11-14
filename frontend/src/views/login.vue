@@ -2,7 +2,7 @@
 import { mapActions } from 'vuex'
 
 export default {
-  name: 'login',
+  name: 'Login',
   data() {
     return {
       email: '',
@@ -12,6 +12,7 @@ export default {
   },
   methods: {
     ...mapActions(['login']),
+
     async submitLogin(e) {
       e.preventDefault()
 
@@ -20,7 +21,6 @@ export default {
           email: this.email,
           password: this.password
         })
-
         this.$router.push('/profile')
       } catch (e) {
         this.backendError = e.response.data.message
@@ -35,11 +35,10 @@ export default {
       form.form-signin(@submit='submitLogin')
         h1.h3.mb-3.font-weight-normal Login
         label.sr-only(for='email')
-          input#email.form-control(v-model='email' type='email' placeholder='Email address' required='' autofocus='')
+          input#email.form-control(v-model='email' type='email' placeholder='Your email address' required autofocus='')
         label.sr-only(for='password')
-          input#password.form-control(v-model='password' type='password' placeholder='Password' required='')
+          input#password.form-control(v-model='password' type='password' placeholder='Your password' required)
         input(type="submit" value="Log in")
-      br
       div(v-if='backendError') {{ backendError }}
       p Are you new here? <router-link to="/register">Sign Up</router-link>
 </template>
