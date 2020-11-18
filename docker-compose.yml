@@ -36,7 +36,6 @@ services:
       - 35729:35729
     volumes:
       - ./backend/src:/app/src
-      -./images:/app/images
   mongo:
     image: mongo
     ports:
