@@ -51,6 +51,8 @@ app.use(
     secret: ['thisisasupersecuresecretsecret', 'thisisanothersupernotsosecretsecret'],
     store: new MongoStore({ mongooseConnection, stringify: false }),
     cookie: {
+      resave: true,
+      saveUninitialized: true,
       maxAge: 30 * 24 * 60 * 60 * 1000,
       path: '/api',
       sameSite: process.env.NODE_ENV == 'production' ? 'none' : 'strict',
