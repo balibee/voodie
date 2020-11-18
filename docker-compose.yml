@@ -5,14 +5,17 @@ services:
     build:
       context: frontend
       dockerfile: Dockerfile
+    environment:
+      - PORT=8080
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.frontend.rule=Host(`voodie.localhost`)"
+      - "traefik.http.routers.backend.rule=(Host(`voodie.localhost`) && (PathPrefix(`/api`))"
       - "traefik.http.routers.frontend.entrypoints=web"
     ports:
       - 8080
     volumes:
       - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
   backend:
     image: backend
     build:
@@ -33,6 +36,7 @@ services:
       - 35729:35729
     volumes:
       - ./backend/src:/app/src
+      -./images:/app/images
   mongo:
     image: mongo
     ports:
