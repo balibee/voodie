@@ -1,13 +1,14 @@
 FROM node:14-alpine
 
-RUN npm install -g nodemon
+ENV NODE_ENV=production
 
 WORKDIR /app
 
 ADD package.json package-lock.json ./
 
-RUN npm install
+RUN npm install --production
 
 ADD bin ./bin
+ADD src ./src
 
-CMD [ "nodemon", "-L" ]
+CMD ["npm", "start"]
