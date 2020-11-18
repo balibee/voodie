@@ -2,7 +2,6 @@ const Foodie = require('./foodie')
 const Recipe = require('./recipe')
 
 const regina = new Foodie('Regina')
-const jill = new Foodie('Jill')
 
 const bananaBread = new Recipe(
   'Banana Bread',
@@ -13,8 +12,3 @@ const bananaBread = new Recipe(
 )
 
 regina.createRecipe(bananaBread)
-
-jill.follow(regina)
-jill.rateRecipe(bananaBread, 5, 'yum')
-regina.rateRecipe(bananaBread, 4, 'good')
-console.log(bananaBread.rating)
