@@ -1,6 +1,9 @@
+Dockerfile
 node_modules
 .history
 .eslintrc.json
 .prettierignore
 .prettierrc
-Dockerfile
+test
+jest.config.json
+jest.setup.js
