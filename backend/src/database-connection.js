@@ -9,7 +9,7 @@ if (!connectionString) {
   connectionString = `mongodb+srv://${username}:${password}@cluster0.wb2fx.mongodb.net/${dbName}?retryWrites=true&w=majority`
 }
 
-mongoose.set('debug', false)
+mongoose.set('debug', true)
 mongoose.set('useCreateIndex', true)
 
 mongoose
