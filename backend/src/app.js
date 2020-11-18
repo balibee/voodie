@@ -6,6 +6,7 @@ const logger = require('morgan')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 const passport = require('passport')
+const cors = require('cors')
 
 const mongooseConnection = require('./database-connection')
 
@@ -18,6 +19,13 @@ const Foodie = require('./models/foodie')
 
 const app = express()
 
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  })
+)
+
 if (app.get('env') == 'development') {
   /* eslint-disable-next-line */
   app.use(require('connect-livereload')())
@@ -26,6 +34,8 @@ if (app.get('env') == 'development') {
     .createServer({ extraExts: ['pug'], usePolling: true })
     .watch([`${__dirname}/public`, `${__dirname}/views`])
 }
+
+app.set('trust proxy', 1)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
