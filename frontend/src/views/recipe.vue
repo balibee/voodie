@@ -99,7 +99,7 @@ export default {
           .col-6.text-right
             p Ratings: {{ recipe.totalRatings }}
 
-          review(v-for='review in reviews' :review='review')
+          review(v-for='review in reviews' :review='review' :key='review.id')
 
           .row-review
             form.review-recipe(@submit.prevent='createReview({recipeId: recipe._id, review})')

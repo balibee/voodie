@@ -38,7 +38,7 @@ export default {
           .col-auto.my-1
             button.btn.btn-primary(type='submit') Submit
 
-      mealcard(v-for='meal in meals' :title='meal.title' :readyInMinutes='meal.readyInMinutes' :id='meal.id' :imageType='meal.imageType')
+      mealcard(v-for='meal in meals' :key='meal.id' :title='meal.title' :readyInMinutes='meal.readyInMinutes' :id='meal.id' :imageType='meal.imageType')
 
 
 </template>
