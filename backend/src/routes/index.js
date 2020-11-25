@@ -6,8 +6,8 @@ router.get('/', (req, res) => {
   res.render('index', { title: 'Profile' })
 })
 
-router.get('/bootstrap', (req, res) => {
-  res.render('bootstrap', { title: 'bootstrap' })
-})
+// router.get('/bootstrap', (req, res) => {
+//   res.render('bootstrap', { title: 'bootstrap' })
+// })
 
 module.exports = router
