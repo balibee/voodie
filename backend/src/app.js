@@ -10,6 +10,7 @@ const cors = require('cors')
 const helmet = require('helmet')
 const bodyParser = require('body-parser')
 const mongoSanitize = require('express-mongo-sanitize')
+const { errors } = require('celebrate')
 
 const mongooseConnection = require('./database-connection')
 
@@ -91,6 +92,8 @@ app.use('/api/account', accountRouter)
 app.use('/api/foodies', foodiesRouter)
 app.use('/api/recipes', recipesRouter)
 app.use('/api/mealplanner', mealPlannerRouter)
+
+app.use(errors())
 
 // catch 404 and forward to error handler
 // eslint-disable-next-line no-use-before-define
