@@ -8,6 +8,7 @@ const MongoStore = require('connect-mongo')(session)
 const passport = require('passport')
 const cors = require('cors')
 const helmet = require('helmet')
+const bodyParser = require('body-parser')
 
 const mongooseConnection = require('./database-connection')
 
@@ -47,6 +48,8 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(helmet())
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
 
 app.use(
   session({
