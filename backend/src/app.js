@@ -7,6 +7,7 @@ const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
 const passport = require('passport')
 const cors = require('cors')
+const helmet = require('helmet')
 
 const mongooseConnection = require('./database-connection')
 
@@ -45,6 +46,7 @@ app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
+app.use(helmet())
 
 app.use(
   session({
@@ -86,12 +88,13 @@ app.use('/api/recipes', recipesRouter)
 app.use('/api/mealplanner', mealPlannerRouter)
 
 // catch 404 and forward to error handler
+// eslint-disable-next-line no-use-before-define
 app.use((req, res, next) => {
   next(createError(404))
 })
 
 // error handler
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   // set locals, only providing error in development
   res.locals.message = err.message
   res.locals.error = req.app.get('env') === 'development' ? err : {}
