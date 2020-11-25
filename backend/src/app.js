@@ -9,6 +9,7 @@ const passport = require('passport')
 const cors = require('cors')
 const helmet = require('helmet')
 const bodyParser = require('body-parser')
+const mongoSanitize = require('express-mongo-sanitize')
 
 const mongooseConnection = require('./database-connection')
 
@@ -50,6 +51,7 @@ app.use(cookieParser())
 app.use(helmet())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+app.use(mongoSanitize())
 
 app.use(
   session({
