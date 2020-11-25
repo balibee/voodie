@@ -9,7 +9,7 @@ services:
       - PORT=8080
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.backend.rule=(Host(`voodie.localhost`) && (PathPrefix(`/api`))"
+      - "traefik.http.routers.frontend.rule=Host(`voodie.localhost`)"
       - "traefik.http.routers.frontend.entrypoints=web"
     ports:
       - 8080
