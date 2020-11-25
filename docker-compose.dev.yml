@@ -1,0 +1,8 @@
+version: "3"
+services:
+  frontend:
+    build:
+      dockerfile: dev.Dockerfile
+  backend:
+    build:
+      dockerfile: dev.Dockerfile
